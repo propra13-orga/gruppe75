@@ -4,7 +4,7 @@ import graphics
 rows = graphics.screen_h/ tile.height
 cols = graphics.screen_w/ tile.width
 
-# room loader: 
+# room loader, load and read .txt file 
 def load(file_in):
     file_des = open(file_in)
     lines = file_des.readlines()
@@ -14,10 +14,12 @@ def load(file_in):
     for c in range(cols):
         tiles.append([])
         for r in range(rows):
-            tiles[c].append(tile.tile[lines[r][c]])
+            tiles[c].append(tile.tile[lines[r][c]]) # notice: transposition over here! [r][c] isntead of [c][r]
             
-    return Room(tiles)        
-      # Room class later: new roomes where they lead to etc.    
+    return Room(tiles)  
+
+    
+# Room class later: new roomes where they lead to etc.    
       
 class Room(object):
     def __init__(self, tiles):
