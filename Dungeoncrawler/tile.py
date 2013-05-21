@@ -13,7 +13,10 @@ image_path = os.path.join("tiles")
 tile_info = {
 # code: ( name, solid, image_file)
     " " : ("floor", False, "floor.png"),
-    "#" : ("wall", True, "wall.png") }
+    "#" : ("wall", True, "wall.png"),
+    "P" : ("player", True, "player.png"),
+    "W" : ("warp", False, "warp.png")
+    }
     
 class Tile(object):
     def __init__(self, name, solid, surface):
