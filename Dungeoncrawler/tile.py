@@ -15,7 +15,8 @@ tile_info = {
     " " : ("floor", False, "floor.png"),
     "#" : ("wall", True, "wall.png"),
     "P" : ("player", True, "player.png"),
-    "+" : ("warp", False, "floor.png")
+    "+" : ("warp", False, "floor.png"),
+    "-" : ("finish", False, "floor.png")
     }
     
 class Tile(object):

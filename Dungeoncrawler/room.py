@@ -45,3 +45,11 @@ class Room(object):
                 if self.tiles[x][y].name == "warp":
                     warp_tile_list.append((x*tile.width, y*tile.height))
         return warp_tile_list
+    
+    def list_finish_tiles(self):
+        finish_tile_list = []
+        for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].name == "finish":
+                    finish_tile_list.append((x*tile.width, y*tile.height))
+        return finish_tile_list
