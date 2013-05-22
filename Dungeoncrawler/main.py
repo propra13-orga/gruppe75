@@ -76,6 +76,13 @@ def check_for_finish(player_pos,map):
         return True
     else:
         return False
+
+def check_for_trap(player_pos,map):
+    trap_list = map.list_trap_tiles()
+    if player_pos in trap_list:
+        return True
+    else:
+        return False
         
 def menu():
     background = black
@@ -129,6 +136,7 @@ def game():
                     pygame.event.post(pygame.event.Event(pygame.QUIT))
                 
                 if event.key == pygame.K_UP:
+                    traps = check_for_trap((player_pos[0],player_pos[1]-32),map)
                     finish = check_for_finish((player_pos[0],player_pos[1]-32),map)
                     warp = check_for_warppoint((player_pos[0],player_pos[1]-32),map)
                     collision = check_for_collision((player_pos[0],player_pos[1]-32),map)
@@ -143,12 +151,19 @@ def game():
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
+                        elif traps == True:
+                            fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
+                            screen.blit(fail,(50,100))
+                            pygame.display.flip()
+                            time.sleep(3)
+                            menu()
                         else:
                             player_pos = (player_pos[0],player_pos[1]-32)
                     elif collision == True:
                         pass
                     
                 if event.key == pygame.K_DOWN:
+                    traps = check_for_trap((player_pos[0],player_pos[1]+32),map)
                     finish = check_for_finish((player_pos[0],player_pos[1]+32),map)
                     warp = check_for_warppoint((player_pos[0],player_pos[1]+32),map)
                     collision = check_for_collision((player_pos[0],player_pos[1]+32),map)
@@ -157,9 +172,15 @@ def game():
                             level=level+1
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
                             player_pos = (32,32)
-                        elif finish == True:
+                        elif finish == True and level == 3:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(50,100))
+                            pygame.display.flip()
+                            time.sleep(3)
+                            menu()
+                        elif traps == True:
+                            fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
+                            screen.blit(fail,(50,100))
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
@@ -169,6 +190,7 @@ def game():
                         pass
                 
                 if event.key == pygame.K_LEFT:
+                    traps = check_for_trap((player_pos[0]-32,player_pos[1]),map)
                     finish = check_for_finish((player_pos[0]-32,player_pos[1]),map)
                     warp = check_for_warppoint((player_pos[0]-32,player_pos[1]),map)
                     collision = check_for_collision((player_pos[0]-32,player_pos[1]),map)
@@ -183,12 +205,19 @@ def game():
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
+                        elif traps == True:
+                            fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
+                            screen.blit(fail,(50,100))
+                            pygame.display.flip()
+                            time.sleep(3)
+                            menu()
                         else:
                             player_pos = (player_pos[0]-32,player_pos[1])
                     elif collision == True:
                         pass
                 
                 if event.key == pygame.K_RIGHT:
+                    traps = check_for_trap((player_pos[0]+32,player_pos[1]),map)
                     finish = check_for_finish((player_pos[0]+32,player_pos[1]),map)
                     warp = check_for_warppoint((player_pos[0]+32,player_pos[1]),map)
                     collision = check_for_collision((player_pos[0]+32,player_pos[1]),map)
@@ -200,6 +229,12 @@ def game():
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(50,100))
+                            pygame.display.flip()
+                            time.sleep(3)
+                            menu()
+                        elif traps == True:
+                            fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
+                            screen.blit(fail,(50,100))
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
