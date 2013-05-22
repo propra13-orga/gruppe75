@@ -40,25 +40,22 @@ def putText(fontOBJ, message = "", position = (150,10),
     screen.blit(text, textRect)
     pygame.display.update()
 
-# Header
-headerfont = getFont(None,34)
-header = "Druecke Enter zum starten"
-position = 150,10
-putText(headerfont, header, position, 
-    forecolour = white,	
-    backcolour = background)
     
 # Wait
 # Loop
 done = False
 while not done:
+    header = pygame.image.load(os.path.join(os.path.join("tiles"), "menu.png")).convert_alpha()
+    position = (10,10)
+    screen.blit(header,position)
+    
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if (event.key == pygame.K_RETURN):
                 done = True
             if event.key == pygame.K_ESCAPE:
                 sys.exit()
-
+    pygame.display.flip()
 def check_for_collision(player_pos,map):
     solid_list = map.list_solid_tiles()
     if player_pos in solid_list:
@@ -83,14 +80,12 @@ def check_for_finish(player_pos,map):
 def menu():
     background = black
     screen = backGroundScreen(background)
-    headerfont = getFont(None,34)
-    header = "Druecke Enter zum starten"
-    position = 150,10
-    putText(headerfont, header, position, 
-        forecolour = white,	
-        backcolour = background)
     done = False
     while not done:
+        header = pygame.image.load(os.path.join(os.path.join("tiles"), "menu.png")).convert_alpha()
+        position = (10,10)
+        screen.blit(header,position)
+        pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
