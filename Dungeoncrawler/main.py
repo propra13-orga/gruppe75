@@ -4,6 +4,58 @@ import room
 import tile
 import os
 
+# Init
+import pygame
+pygame.init()
+pygame.mouse.set_visible(1)
+
+# Farben
+white = 255,255,255
+black = 0,0,0
+
+# hintergrund
+def backGroundScreen(colour):
+   screen = pygame.display.set_mode((640,480))  
+   backgrnd = colour
+   screen.fill(backgrnd)
+   pygame.display.flip()
+   return screen
+
+background = black
+screen = backGroundScreen(background)
+
+# Schrift
+def getFont(name = None, size = 20):
+   font = pygame.font.Font(name, size)
+   return font
+
+# Rendern
+def putText(fontOBJ, message = "", position = (150,10),
+            forecolour = black, backcolour = white):
+   antialias = True
+   text = fontOBJ.render(message, antialias, forecolour, backcolour)
+   textRect = text.get_rect()
+   textRect.topleft = position
+   screen.blit(text, textRect)
+   pygame.display.update()
+
+# Header
+headerfont = getFont(None,34)
+header = "Druecke Enter zum starten"
+position = 150,10
+putText(headerfont, header, position, 
+	forecolour = white,	
+	backcolour = background)
+	
+# Wait
+# Loop
+done = False
+while not done:
+   for event in pygame.event.get():
+      if event.type == pygame.KEYDOWN:
+         if (event.key == pygame.K_RETURN):
+            done = True
+
 
 def check_for_collision(player_pos,map):
     solid_list = map.list_solid_tiles()
