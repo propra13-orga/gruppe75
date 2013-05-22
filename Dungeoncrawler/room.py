@@ -29,3 +29,12 @@ class Room(object):
         for x in range(cols):
             for y in range(rows):
                 surface.blit(self.tiles[x][y].surface, (x*tile.width, y*tile.height))
+    
+    def list_solid_tiles(self):
+        solid_tile_list = []
+        for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].solid == True:
+                    solid_tile_list.append((x*tile.width, y*tile.height))
+        return solid_tile_list
+                    
