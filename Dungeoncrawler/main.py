@@ -4,6 +4,7 @@ import room
 import tile
 import os
 import time
+import sys
 
 # Init
 pygame.init()
@@ -51,11 +52,12 @@ putText(headerfont, header, position,
 # Loop
 done = False
 while not done:
-   for event in pygame.event.get():
-      if event.type == pygame.KEYDOWN:
-         if (event.key == pygame.K_RETURN):
-            done = True
-
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if (event.key == pygame.K_RETURN):
+                done = True
+            if event.key == pygame.K_ESCAPE:
+                sys.exit()
 
 def check_for_collision(player_pos,map):
     solid_list = map.list_solid_tiles()
@@ -91,8 +93,10 @@ def menu():
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
-                if (event.key == pygame.K_RETURN):
+                if event.key == pygame.K_RETURN:
                     done = True
+                if event.key == pygame.K_ESCAPE:
+                    sys.exit()
     if done == True:
         game()
 global level
@@ -141,6 +145,7 @@ def game():
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(50,100))
+                            pygame.display.flip()
                             time.sleep(3)
                             menu()
                         else:
@@ -160,6 +165,7 @@ def game():
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(50,100))
+                            pygame.display.flip()
                             time.sleep(3)
                             menu()
                         else:
@@ -179,6 +185,7 @@ def game():
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(50,100))
+                            pygame.display.flip()
                             time.sleep(3)
                             menu()
                         else:
@@ -197,7 +204,8 @@ def game():
                             player_pos = (32,32)
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
-                            screen.blit(win,(1,1))
+                            screen.blit(win,(50,100))
+                            pygame.display.flip()
                             time.sleep(3)
                             menu()
                         else:
