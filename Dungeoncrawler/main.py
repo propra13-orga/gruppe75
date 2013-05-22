@@ -11,7 +11,15 @@ def check_for_collision(player_pos,map):
         return True
     else:
         return False 
-
+        
+def check_for_warppoint(player_pos,map):
+    warp_list = map.list_warp_tiles()
+    if player_pos in solid_list:
+        return True
+    else:
+        return False
+        
+        
 def main():
     pygame.init()
     pygame.display.set_mode(graphics.screen_size)

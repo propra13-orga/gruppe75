@@ -37,4 +37,11 @@ class Room(object):
                 if self.tiles[x][y].solid == True:
                     solid_tile_list.append((x*tile.width, y*tile.height))
         return solid_tile_list
-                    
+    
+    def list_warp_tiles(self):
+    warp_tile_list = []
+    for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].name == "warp":
+                    warp_tile_list.append((x*tile.width, y*tile.height))
+    return warp_tile_list = []
