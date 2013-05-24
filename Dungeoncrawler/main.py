@@ -46,7 +46,7 @@ def putText(fontOBJ, message = "", position = (150,10),
 done = False
 while not done:
     header = pygame.image.load(os.path.join(os.path.join("tiles"), "menu.png")).convert_alpha()
-    position = (10,10)
+    position = (0,0)
     screen.blit(header,position)
     
     for event in pygame.event.get():
@@ -90,7 +90,7 @@ def menu():
     done = False
     while not done:
         header = pygame.image.load(os.path.join(os.path.join("tiles"), "menu.png")).convert_alpha()
-        position = (10,10)
+        position = (0,0)
         screen.blit(header,position)
         pygame.display.flip()
         for event in pygame.event.get():
@@ -147,13 +147,13 @@ def game():
                             player_pos = (32,32)
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
-                            screen.blit(win,(50,100))
+                            screen.blit(win,(0,0))
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
                         elif traps == True:
                             fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
-                            screen.blit(fail,(50,100))
+                            screen.blit(fail,(0,0))
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
@@ -174,13 +174,13 @@ def game():
                             player_pos = (32,32)
                         elif finish == True and level == 3:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
-                            screen.blit(win,(50,100))
+                            screen.blit(win,(0,0))
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
                         elif traps == True:
                             fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
-                            screen.blit(fail,(50,100))
+                            screen.blit(fail,(0,0))
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
@@ -201,13 +201,13 @@ def game():
                             player_pos = (32,32)
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
-                            screen.blit(win,(50,100))
+                            screen.blit(win,(0,0))
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
                         elif traps == True:
                             fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
-                            screen.blit(fail,(50,100))
+                            screen.blit(fail,(0,0))
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
@@ -228,13 +228,13 @@ def game():
                             player_pos = (32,32)
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
-                            screen.blit(win,(50,100))
+                            screen.blit(win,(0,0))
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
                         elif traps == True:
                             fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
-                            screen.blit(fail,(50,100))
+                            screen.blit(fail,(0,0))
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
