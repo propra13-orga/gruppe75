@@ -25,22 +25,6 @@ def backGroundScreen(colour):
 background = black
 screen = backGroundScreen(background)
 
-# Schrift
-def getFont(name = None, size = 20):
-   font = pygame.font.Font(name, size)
-   return font
-
-# Rendern
-def putText(fontOBJ, message = "", position = (150,10),
-            forecolour = black, backcolour = white):
-    antialias = True
-    text = fontOBJ.render(message, antialias, forecolour, backcolour)
-    textRect = text.get_rect()
-    textRect.topleft = position
-    screen.blit(text, textRect)
-    pygame.display.update()
-
-    
 # Wait
 # Loop
 done = False
