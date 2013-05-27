@@ -1,0 +1,36 @@
+- Player Klasse
+    -Leben 
+    -Rüstung
+    -Waffe
+    -Mana
+    -Zauber
+    -Name
+    -Geld
+    -Items
+    - 
+    
+- Gegner Klasse
+    -Leben
+    -Rüstung
+    -Name
+    -Waffe
+
+- Player Animation
+
+- Gegner Animation
+
+- Level erweitern
+
+- bossgegner
+
+- Checkpoints
+
+- Schadenssystem
+
+- Items
+
+- Shop
+
+- NPC´s zur Interaktion
+
+- Inforfmationsleiste(Leben, Mana, Gold, momentane, Waffe)
