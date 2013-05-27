@@ -29,7 +29,7 @@ class Room(object):
         for x in range(cols):
             for y in range(rows):
                 surface.blit(self.tiles[x][y].surface, (x*tile.width, y*tile.height))
-    
+    #prueft auf feste Elemente
     def list_solid_tiles(self):
         solid_tile_list = []
         for x in range(cols):
@@ -37,7 +37,7 @@ class Room(object):
                 if self.tiles[x][y].solid == True:
                     solid_tile_list.append((x*tile.width, y*tile.height))
         return solid_tile_list
-    
+    #prueft auf Level-Ende
     def list_warp_tiles(self):
         warp_tile_list = []
         for x in range(cols):
@@ -45,7 +45,7 @@ class Room(object):
                 if self.tiles[x][y].name == "warp":
                     warp_tile_list.append((x*tile.width, y*tile.height))
         return warp_tile_list
-    
+    #prueft auf gewinn-Feld
     def list_finish_tiles(self):
         finish_tile_list = []
         for x in range(cols):
@@ -53,7 +53,7 @@ class Room(object):
                 if self.tiles[x][y].name == "finish":
                     finish_tile_list.append((x*tile.width, y*tile.height))
         return finish_tile_list
-    
+    #prüft auf fallen
     def list_trap_tiles(self):
         trap_tile_list = []
         for x in range(cols):

@@ -118,8 +118,9 @@ def game():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     pygame.event.post(pygame.event.Event(pygame.QUIT))
-                
+                #Steuerung
                 if event.key == pygame.K_UP:
+                    #check, welches Feld wir betreten
                     traps = check_for_trap((player_pos[0],player_pos[1]-32),map)
                     finish = check_for_finish((player_pos[0],player_pos[1]-32),map)
                     warp = check_for_warppoint((player_pos[0],player_pos[1]-32),map)
@@ -147,6 +148,7 @@ def game():
                         pass
                     
                 if event.key == pygame.K_DOWN:
+                    #check, welches Feld wir betreten
                     traps = check_for_trap((player_pos[0],player_pos[1]+32),map)
                     finish = check_for_finish((player_pos[0],player_pos[1]+32),map)
                     warp = check_for_warppoint((player_pos[0],player_pos[1]+32),map)
@@ -174,6 +176,7 @@ def game():
                         pass
                 
                 if event.key == pygame.K_LEFT:
+                    #check, welches Feld wir betreten
                     traps = check_for_trap((player_pos[0]-32,player_pos[1]),map)
                     finish = check_for_finish((player_pos[0]-32,player_pos[1]),map)
                     warp = check_for_warppoint((player_pos[0]-32,player_pos[1]),map)
@@ -201,6 +204,7 @@ def game():
                         pass
                 
                 if event.key == pygame.K_RIGHT:
+                    #check, welches Feld wir betreten
                     traps = check_for_trap((player_pos[0]+32,player_pos[1]),map)
                     finish = check_for_finish((player_pos[0]+32,player_pos[1]),map)
                     warp = check_for_warppoint((player_pos[0]+32,player_pos[1]),map)
