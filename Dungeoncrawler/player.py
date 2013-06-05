@@ -1,10 +1,11 @@
 import pygame
 
-class Player(object):
+class player(object):
     #Variablentypen
     #name: string, weapon: weapon object, armor: armor object, health: int,
     #mana: int, money:int, items: Liste, image: "geladenes"Bild 
     def __init__(self, name, weapon, armor , health, mana, money, items, image):
+        self.position = (0,0)
         self.image = image
         self.name = name
         self.mana = mana
@@ -27,8 +28,9 @@ class Player(object):
     def change_weapon(self, new_weapon):
         add_item(self.weapon)
         self.weapon = new_weapon
-    # kann auch für bewegung benutzt werden
+    # kann auch fuer bewegung benutzt werden
     def change_image(self, new_image):
         self.image = new_image
-        
-        
+    # new_position ist ein Tupel (x,y)
+    def change_position(self, new_position):
+        self.position = new_position
