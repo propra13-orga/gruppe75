@@ -133,7 +133,11 @@ def game():
                                 screen.blit(next, (0,0))
                                 pygame.display.flip()
                                 time.sleep(3)
-                            
+                            elif level == 7:
+                                next = pygame.image.load(os.path.join(os.path.join("tiles"), "level_3.png")).convert_alpha()
+                                screen.blit(next, (0,0))
+                                pygame.display.flip()
+                                time.sleep(3)
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                             player_pos = (32,32)
                         elif finish == True:
@@ -167,7 +171,11 @@ def game():
                                 screen.blit(next, (0,0))
                                 pygame.display.flip()
                                 time.sleep(3)
-                            
+                            elif level == 7:
+                                next = pygame.image.load(os.path.join(os.path.join("tiles"), "level_3.png")).convert_alpha()
+                                screen.blit(next, (0,0))
+                                pygame.display.flip()
+                                time.sleep(3)
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
                             player_pos = (32,32)
                         elif finish == True and level == 3:
@@ -198,6 +206,11 @@ def game():
                             level=level+1
                             if level == 4:
                                 next = pygame.image.load(os.path.join(os.path.join("tiles"), "level_2.png")).convert_alpha()
+                                screen.blit(next, (0,0))
+                                pygame.display.flip()
+                                time.sleep(3)
+                            elif level == 7:
+                                next = pygame.image.load(os.path.join(os.path.join("tiles"), "level_3.png")).convert_alpha()
                                 screen.blit(next, (0,0))
                                 pygame.display.flip()
                                 time.sleep(3)
@@ -234,7 +247,11 @@ def game():
                                 screen.blit(next, (0,0))
                                 pygame.display.flip()
                                 time.sleep(3)
-                                
+                            elif level == 7:
+                                next = pygame.image.load(os.path.join(os.path.join("tiles"), "level_3.png")).convert_alpha()
+                                screen.blit(next, (0,0))
+                                pygame.display.flip()
+                                time.sleep(3)    
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
                             player_pos = (32,32)
                         elif finish == True:
