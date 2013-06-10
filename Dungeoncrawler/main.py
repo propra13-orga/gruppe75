@@ -68,7 +68,14 @@ def check_for_trap(player_pos,map):
         return True
     else:
         return False
-        
+
+def check_for_fireballs(player_pos,map):
+    fireball_list = map.list_fireball_tiles()
+    if player_pos in fireball_list:
+        return True
+    else:
+        return False
+
 def menu():
     background = black
     screen = backGroundScreen(background)
@@ -124,6 +131,7 @@ def game():
                 #Steuerung
                 if event.key == pygame.K_UP:
                     #check, welches Feld wir betreten
+                    fireballs = check_for_fireballs((player_pos[0],player_pos[1]-32),map)
                     traps = check_for_trap((player_pos[0],player_pos[1]-32),map)
                     finish = check_for_finish((player_pos[0],player_pos[1]-32),map)
                     warp = check_for_warppoint((player_pos[0],player_pos[1]-32),map)
@@ -162,6 +170,7 @@ def game():
                     
                 if event.key == pygame.K_DOWN:
                     #check, welches Feld wir betreten
+                    fireballs = check_for_fireballs((player_pos[0],player_pos[1]+32),map)
                     traps = check_for_trap((player_pos[0],player_pos[1]+32),map)
                     finish = check_for_finish((player_pos[0],player_pos[1]+32),map)
                     warp = check_for_warppoint((player_pos[0],player_pos[1]+32),map)
@@ -200,6 +209,7 @@ def game():
                 
                 if event.key == pygame.K_LEFT:
                     #check, welches Feld wir betreten
+                    fireballs = check_for_fireballs((player_pos[0]-32,player_pos[1]),map)
                     traps = check_for_trap((player_pos[0]-32,player_pos[1]),map)
                     finish = check_for_finish((player_pos[0]-32,player_pos[1]),map)
                     warp = check_for_warppoint((player_pos[0]-32,player_pos[1]),map)
@@ -238,6 +248,7 @@ def game():
                 
                 if event.key == pygame.K_RIGHT:
                     #check, welches Feld wir betreten
+                    fireballs = check_for_fireballs((player_pos[0]+32,player_pos[1]),map)
                     traps = check_for_trap((player_pos[0]+32,player_pos[1]),map)
                     finish = check_for_finish((player_pos[0]+32,player_pos[1]),map)
                     warp = check_for_warppoint((player_pos[0]+32,player_pos[1]),map)

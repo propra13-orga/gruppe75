@@ -38,3 +38,17 @@ class player(object):
         return self.position
     def get_image(self):
         return self.image
+    def get_mana(self):
+        return self.mana
+    def get_health(self):
+        return self.health
+    def get_money(self):
+        return self.money
+    def get_name(self):
+        return self.name
+    def get_weapon(self):
+        return self.weapon
+    def get_armor(self):
+        return self.armor
+    def get_items(self):
+        return self.items

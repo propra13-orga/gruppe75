@@ -61,3 +61,11 @@ class Room(object):
                 if self.tiles[x][y].name == "trap":
                     trap_tile_list.append((x*tile.width, y*tile.height))
         return trap_tile_list
+    #prueft auf feuerball
+    def list_fireball_tiles(self):
+        fireball_tile_list = []
+        for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].name == "fireball":
+                    fireball_tile_list.append((x*tile.width, y*tile.height))
+        return fireball_tile_list
