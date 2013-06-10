@@ -1,5 +1,5 @@
 import pygame
-
+import graphics
 class player(object):
     #Variablentypen
     #name: string, weapon: weapon object, armor: armor object, health: int,
@@ -34,3 +34,7 @@ class player(object):
     # new_position ist ein Tupel (x,y)
     def change_position(self, new_position):
         self.position = new_position
+    def get_position(self):
+        return self.position
+    def get_image(self):
+        return self.image

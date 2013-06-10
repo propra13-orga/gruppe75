@@ -5,7 +5,8 @@ import tile
 import os
 import time
 import sys
-
+from player import*
+from item import*
 # Init
 pygame.init()
 pygame.mouse.set_visible(1)
@@ -99,8 +100,10 @@ def game():
     tile.init()
     map = room.load(os.path.join("data", "level.txt"))
     screen = pygame.display.get_surface()
-    player = pygame.image.load(os.path.join(os.path.join("tiles"), "player.png")).convert_alpha()
-    player_pos = (32,32)
+    fist = weapon("fist",1,32)
+    none = armor("none",0,"bild")
+    player1 = player("player1",fist,none,100,50,1000,[],pygame.image.load(os.path.join(os.path.join("tiles"), "player.png")).convert_alpha())
+    player1.change_position((32,32))
     # running = True, game loop
     
     running = True
@@ -109,7 +112,7 @@ def game():
         clock.tick(30)
         # screen surface black
         screen.fill((0, 0, 0))
-        
+        player_pos = player1.get_position()
         # end game if finding a quit event
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -139,7 +142,7 @@ def game():
                                 pygame.display.flip()
                                 time.sleep(3)
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
-                            player_pos = (32,32)
+                            player_1.change_position((32,32))
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(0,0))
@@ -153,7 +156,7 @@ def game():
                             time.sleep(3)
                             menu()
                         else:
-                            player_pos = (player_pos[0],player_pos[1]-32)
+                            player1.change_position((player_pos[0],player_pos[1]-32))
                     elif collision == True:
                         pass
                     
@@ -177,7 +180,7 @@ def game():
                                 pygame.display.flip()
                                 time.sleep(3)
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
-                            player_pos = (32,32)
+                            player1.change_position((32,32))
                         elif finish == True and level == 3:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(0,0))
@@ -191,7 +194,7 @@ def game():
                             time.sleep(3)
                             menu()
                         else:
-                            player_pos = (player_pos[0],player_pos[1]+32)
+                            player1.change_position((player_pos[0],player_pos[1]+32))
                     elif collision == True:
                         pass
                 
@@ -215,7 +218,7 @@ def game():
                                 pygame.display.flip()
                                 time.sleep(3)
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
-                            player_pos = (32,32)
+                            player1.change_position((32,32))
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(0,0))
@@ -229,7 +232,7 @@ def game():
                             time.sleep(3)
                             menu()
                         else:
-                            player_pos = (player_pos[0]-32,player_pos[1])
+                            player1.change_position((player_pos[0]-32,player_pos[1]))
                     elif collision == True:
                         pass
                 
@@ -253,7 +256,7 @@ def game():
                                 pygame.display.flip()
                                 time.sleep(3)    
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
-                            player_pos = (32,32)
+                            player1.change_position((32,32))
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(0,0))
@@ -267,13 +270,13 @@ def game():
                             time.sleep(3)
                             menu()
                         else:
-                            player_pos = (player_pos[0]+32,player_pos[1])
+                            player1.change_position((player_pos[0]+32,player_pos[1]))
                     elif collision == True:
                         pass
         
         # draw map on screen
         map.draw(screen)
-        screen.blit(player,player_pos)
+        screen.blit(player1.get_image(),player1.get_position())
         pygame.display.flip()
         
         
