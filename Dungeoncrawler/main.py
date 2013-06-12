@@ -76,6 +76,13 @@ def check_for_fireballs(player_pos,map):
     else:
         return False
 
+def check_for_back(player_pos,map):
+    back_list = map.list_back_tiles()
+    if player_pos in back_list:
+        return True
+    else:
+        return False
+
 def menu():
     background = black
     screen = backGroundScreen(background)
@@ -105,7 +112,7 @@ def game():
     pygame.key.set_repeat(1, 30)
     clock = pygame.time.Clock()
     tile.init()
-    map = room.load(os.path.join("data", "level.txt"))
+    map = room.load(os.path.join("data", "level1.txt"))
     screen = pygame.display.get_surface()
     fist = weapon("fist",1,32)
     none = armor("none",0,"bild")
@@ -131,6 +138,7 @@ def game():
                 #Steuerung
                 if event.key == pygame.K_UP:
                     #check, welches Feld wir betreten
+                    back = check_for_back((player_pos[0],player_pos[1]-32),map)
                     fireballs = check_for_fireballs((player_pos[0],player_pos[1]-32),map)
                     traps = check_for_trap((player_pos[0],player_pos[1]-32),map)
                     finish = check_for_finish((player_pos[0],player_pos[1]-32),map)
@@ -163,6 +171,10 @@ def game():
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
+                        elif back == True:
+                            level=level-1
+                            map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                            player1.change_position((32,32))
                         else:
                             player1.change_position((player_pos[0],player_pos[1]-32))
                     elif collision == True:
@@ -170,6 +182,7 @@ def game():
                     
                 if event.key == pygame.K_DOWN:
                     #check, welches Feld wir betreten
+                    back = check_for_back((player_pos[0],player_pos[1]+32),map)
                     fireballs = check_for_fireballs((player_pos[0],player_pos[1]+32),map)
                     traps = check_for_trap((player_pos[0],player_pos[1]+32),map)
                     finish = check_for_finish((player_pos[0],player_pos[1]+32),map)
@@ -202,6 +215,10 @@ def game():
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
+                        elif back == True:
+                            level=level-1
+                            map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                            player1.change_position((32,32))
                         else:
                             player1.change_position((player_pos[0],player_pos[1]+32))
                     elif collision == True:
@@ -209,6 +226,7 @@ def game():
                 
                 if event.key == pygame.K_LEFT:
                     #check, welches Feld wir betreten
+                    back = check_for_back((player_pos[0]-32,player_pos[1]),map)
                     fireballs = check_for_fireballs((player_pos[0]-32,player_pos[1]),map)
                     traps = check_for_trap((player_pos[0]-32,player_pos[1]),map)
                     finish = check_for_finish((player_pos[0]-32,player_pos[1]),map)
@@ -241,6 +259,10 @@ def game():
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
+                        elif back == True:
+                            level=level-1
+                            map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                            player1.change_position((32,32))
                         else:
                             player1.change_position((player_pos[0]-32,player_pos[1]))
                     elif collision == True:
@@ -248,6 +270,7 @@ def game():
                 
                 if event.key == pygame.K_RIGHT:
                     #check, welches Feld wir betreten
+                    back = check_for_back((player_pos[0]+32,player_pos[1]),map)
                     fireballs = check_for_fireballs((player_pos[0]+32,player_pos[1]),map)
                     traps = check_for_trap((player_pos[0]+32,player_pos[1]),map)
                     finish = check_for_finish((player_pos[0]+32,player_pos[1]),map)
@@ -280,6 +303,10 @@ def game():
                             pygame.display.flip()
                             time.sleep(3)
                             menu()
+                        elif back == True:
+                            level=level-1
+                            map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                            player1.change_position((32,32))
                         else:
                             player1.change_position((player_pos[0]+32,player_pos[1]))
                     elif collision == True:

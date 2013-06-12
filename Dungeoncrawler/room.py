@@ -69,3 +69,11 @@ class Room(object):
                 if self.tiles[x][y].name == "fireball":
                     fireball_tile_list.append((x*tile.width, y*tile.height))
         return fireball_tile_list
+    #prueft auf zurueck
+    def list_back_tiles(self):
+        back_tile_list = []
+        for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].name == "back":
+                    back_tile_list.append((x*tile.width, y*tile.height))
+        return back_tile_list
