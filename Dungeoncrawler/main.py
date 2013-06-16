@@ -312,17 +312,23 @@ def game():
                     elif collision == True:
                         pass
                      
-        mana = player1.mana
-        health = player1.health
-        money = player1.money
-        screen.blit("Health:"+str(health),(0,0))
-        screen.blit("Mana:"+str(mana),(10,0))
-        screen.blit("Money:"+str(money),(20,0))
+        
         
         # draw map on screen
         map.draw(screen)
         screen.blit(player1.get_image(),player1.get_position())
         pygame.display.flip()
+        
+        mana = player1.mana
+        health = player1.health
+        money = player1.money
+        font = pygame.font.Font(None, 36)
+        text1 = font.render("Health:"+str(health), 1, (255, 255, 255))
+        text2 = font.render("Mana:"+str(mana), 1, (255, 255, 255))
+        text3 = font.render("Money:"+str(money), 1, (255, 255, 255))
+        screen.blit(text1, (0,0))
+        screen.blit(text2, (0,20))
+        screen.blit(text3, (0,40)
         
         
 def main():
