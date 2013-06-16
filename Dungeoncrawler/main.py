@@ -311,6 +311,13 @@ def game():
                             player1.change_position((player_pos[0]+32,player_pos[1]))
                     elif collision == True:
                         pass
+                     
+        mana = player1.mana
+        health = player1.health
+        money = player1.money
+        screen.blit("Health":+str.(health),(0,0))
+        screen.blit("Mana":str.(mana,(10,0)
+        screen.blit("Money":str.(money,(20,0)
         
         # draw map on screen
         map.draw(screen)
