@@ -316,8 +316,8 @@ def game():
         health = player1.health
         money = player1.money
         screen.blit("Health":+str.(health),(0,0))
-        screen.blit("Mana":str.(mana,(10,0)
-        screen.blit("Money":str.(money,(20,0)
+        screen.blit("Mana":+str.(mana,(10,0)
+        screen.blit("Money":+str.(money,(20,0)
         
         # draw map on screen
         map.draw(screen)
