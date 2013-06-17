@@ -83,6 +83,12 @@ def check_for_back(player_pos,map):
     else:
         return False
 
+def damage_manager(aggressor,opfer):
+    damage = aggressor.get_damage()
+    opfer_health = opfer.get_health()
+    opfer_health = opfer_health - damage
+
+        
 def menu():
     background = black
     screen = backGroundScreen(background)
