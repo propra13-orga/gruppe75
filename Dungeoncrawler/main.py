@@ -317,19 +317,19 @@ def game():
         # draw map on screen
         map.draw(screen)
         screen.blit(player1.get_image(),player1.get_position())
-        pygame.display.flip()
+
         
-        mana = player1.mana
-        health = player1.health
-        money = player1.money
+        mana = player1.get_mana()
+        health = player1.get_health()
+        money = player1.get_money()
         font = pygame.font.Font(None, 36)
         text1 = font.render("Health:"+str(health), 1, (255, 255, 255))
         text2 = font.render("Mana:"+str(mana), 1, (255, 255, 255))
         text3 = font.render("Money:"+str(money), 1, (255, 255, 255))
         screen.blit(text1, (0,0))
-        screen.blit(text2, (0,20))
-        screen.blit(text3, (0,40)
-        
+        screen.blit(text2, (150,0))
+        screen.blit(text3, (300,0))
+        pygame.display.flip()
         
 def main():
     game()
