@@ -1,7 +1,7 @@
 import os
 import pygame
 
-# Tile dimensions
+#  Tile dimensions
 
 
 height = 32
