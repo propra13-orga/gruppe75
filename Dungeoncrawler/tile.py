@@ -19,7 +19,8 @@ tile_info = {
     "-" : ("finish", False, "floor.png"),
     "T" : ("trap", False, "trap.png"),
     "F" : ("fireball", False, "fireball.png"),
-    "B" : ("back", False, "floor.png")
+    "B" : ("back", False, "floor.png"),
+    "S" : ("sowrd", False, "sword.png")
     }
     
 class Tile(object):
