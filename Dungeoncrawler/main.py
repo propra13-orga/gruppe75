@@ -126,7 +126,7 @@ def game():
     none = armor("none",0,"bild")
     player1 = player("player1",fist,none,100,50,1000,[],pygame.image.load(os.path.join(os.path.join("tiles"), "player.png")).convert_alpha())
     player1.change_position((32,32))
-    enemy1 = enemy("fireball", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "fireball.png")).convert_alpha())
+    enemy1 = enemy("gegner", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha())
     # running = True, game loop
     
     running = True
