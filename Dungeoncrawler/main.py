@@ -7,6 +7,7 @@ import time
 import sys
 from player import*
 from item import*
+from enemy import*
 # Init
 pygame.init()
 pygame.mouse.set_visible(1)
@@ -87,7 +88,8 @@ def damage_manager(aggressor,opfer):
     damage = aggressor.get_damage()
     opfer_health = opfer.get_health()
     opfer_health = opfer_health - damage
-
+    if opferhealth <= 0:
+        del opfer
         
 def menu():
     background = black
@@ -124,6 +126,7 @@ def game():
     none = armor("none",0,"bild")
     player1 = player("player1",fist,none,100,50,1000,[],pygame.image.load(os.path.join(os.path.join("tiles"), "player.png")).convert_alpha())
     player1.change_position((32,32))
+    enemy1 = enemy("fireball", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "fireball.png")).convert_alpha())
     # running = True, game loop
     
     running = True
@@ -165,6 +168,7 @@ def game():
                                 time.sleep(3)
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                             player_1.change_position((32,32))
+                            enemy1.change_position((320,256))
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(0,0))
@@ -181,6 +185,7 @@ def game():
                             level=level-1
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                             player1.change_position((32,32))
+                            enemy1.change_position((320,256))
                         else:
                             player1.change_position((player_pos[0],player_pos[1]-32))
                     elif collision == True:
@@ -209,6 +214,7 @@ def game():
                                 time.sleep(3)
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
                             player1.change_position((32,32))
+                            enemy1.change_position((320,256))
                         elif finish == True and level == 3:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(0,0))
@@ -225,6 +231,7 @@ def game():
                             level=level-1
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                             player1.change_position((32,32))
+                            enemy1.change_position((320,256))
                         else:
                             player1.change_position((player_pos[0],player_pos[1]+32))
                     elif collision == True:
@@ -253,6 +260,7 @@ def game():
                                 time.sleep(3)
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
                             player1.change_position((32,32))
+                            enemy1.change_position((320,256))
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(0,0))
@@ -269,6 +277,7 @@ def game():
                             level=level-1
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                             player1.change_position((32,32))
+                            enemy1.change_position((320,256))
                         else:
                             player1.change_position((player_pos[0]-32,player_pos[1]))
                     elif collision == True:
@@ -297,6 +306,7 @@ def game():
                                 time.sleep(3)    
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
                             player1.change_position((32,32))
+                            enemy1.change_position((320,256))
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(0,0))
@@ -313,6 +323,7 @@ def game():
                             level=level-1
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                             player1.change_position((32,32))
+                            enemy1.change_position((320,256))
                         else:
                             player1.change_position((player_pos[0]+32,player_pos[1]))
                     elif collision == True:
@@ -322,8 +333,9 @@ def game():
         
         # draw map on screen
         map.draw(screen)
+        enemy1.move(map)
         screen.blit(player1.get_image(),player1.get_position())
-
+        screen.blit(enemy1.get_image(), enemy1.get_position())
         
         mana = player1.get_mana()
         health = player1.get_health()
