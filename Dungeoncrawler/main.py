@@ -8,7 +8,7 @@ import sys
 from player import*
 from item import*
 from enemy import*
-# Init
+# Init 
 pygame.init()
 pygame.mouse.set_visible(1)
 
