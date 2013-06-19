@@ -113,9 +113,11 @@ def damage_manager(aggressor,opfer):
     damage = aggressor.get_damage()
     opfer_health = opfer.get_health()
     opfer_health = opfer_health - damage
-    if opferhealth <= 0:
+    if opfer_health <= 0:
+        opfer.set_health(0)
         del opfer
-        
+    else:
+        opfer.set_health(opfer_health)
 def menu():
     background = black
     screen = backGroundScreen(background)
@@ -620,6 +622,33 @@ def game():
         # draw map on screen
         map.draw(screen)
         enemy1.move(map)
+        if enemy1.get_position() == player1.get_position():
+            damage_manager(enemy1,player1)
+            if player1.get_health() <=0 :
+                fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
+                screen.blit(fail,(0,0))
+                pygame.display.flip()
+                time.sleep(3)
+                if leben > 0:
+                    leben = leben -1
+                    if level == 1 or level == 2 or level == 3:
+                        level = 1
+                    elif level == 4 or level == 5 or level == 6:
+                        level = 4
+                    elif level == 7 or level == 8 or level == 9:
+                        level = 7
+                    map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                    player1.change_position((32,32))
+                    enemy1.change_position((320,256))
+                else:
+                    menu()
+        elif enemy1.get_position() == (player1.get_position()[0]+32,player1.get_position()[1]):
+            try:
+                damage_manager(player1,enemy1)
+                screen.blit(enemy1.get_image(),enemy1.get_position())
+            except:
+                enemy1 = enemy("gegner", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha())
+                enemy1.change_position((-16,-16))
         if spell_var == True:
             spell_var = spell1.move(map)
             if spell_var == False:
