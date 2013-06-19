@@ -77,3 +77,19 @@ class Room(object):
                 if self.tiles[x][y].name == "back":
                     back_tile_list.append((x*tile.width, y*tile.height))
         return back_tile_list
+    # prueft auf interact
+    def list_interact_tiles(self):
+        interact_tile_list = []
+        for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].name == "interact":
+                    interact_tile_list.append((x*tile.width, y*tile.height))
+        return interact_tile_list
+      #prueft auf shopping
+    def list_shopping_tiles(self):
+        shopping_tile_list = []
+        for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].name == "shopping":
+                    shopping_tile_list.append((x*tile.width, y*tile.height))
+        return shopping_tile_list
