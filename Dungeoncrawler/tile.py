@@ -22,10 +22,11 @@ tile_info = {
     "B" : ("back", False, "floor.png"),
     "S" : ("sword", False, "sword.png"),
     "I" : ("interact", False, "interact.png"),
-    "G" : ("shopping", False, "shop.png")
-	"M" : ("managain", False, "mana.png")
-	"H" : ("healthgain", False, "heal.png")
+    "G" : ("shopping", False, "shop.png"),
+	"M" : ("managain", False, "mana.png"),
+	"H" : ("healthgain", False, "heal.png"),
 	"C" : ("cashgain", False, "gold.png")
+
     }
     
 class Tile(object):
