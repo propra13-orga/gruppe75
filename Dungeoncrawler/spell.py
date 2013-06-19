@@ -1,10 +1,15 @@
 import pygame
 import os
+from player import*
+from enemy import*
 
 def check_for_enemy( player1, enemy1, boss, position):
     liste = [player1.get_position(),enemy1.get_position(),boss.get_position()]
     if position in liste:
-        return liste
+        for item in liste:
+            return item
+    else:
+        return False
     
 
 def check_for_collision(player_pos,map):
@@ -37,8 +42,19 @@ class spell(object):
             solid = check_for_collision((self.position[0],self.position[1]-32),map)
             enemy = check_for_enemy(playe1, enemy1, boss, (self.position[0],self.position[1]-32))
             if solid == False:
-                self.position = (self.position[0],self.position[1]-32)
-                return True
+                if enemy == player1:
+                    player1.set_health(player1.get_health()-self.damage)
+                    return False
+                elif enemy == enemy1:
+                    enemy1.set_health(enemy.get_health()-self.damage)
+                    return False
+                elif enemy == boss:
+                    boss.set_health(boss.get_health()-self.damage)
+                    return False
+                else:
+                    self.position = (self.position[0],self.position[1]-32)
+                    return True
+                
             elif solid == True:
                 return False
         elif self.direction == "DOWN":
