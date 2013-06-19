@@ -28,7 +28,7 @@ class player(object):
         self.items.remove(item)
     # wechselt die Waffe und steckt die alte Waffe in die Itemliste(Inventar)
     def change_weapon(self, new_weapon):
-        add_item(self.weapon)
+        self.add_item(self.weapon)
         self.weapon = new_weapon
     # kann auch fuer bewegung benutzt werden
     def change_image(self, new_image):

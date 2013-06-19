@@ -93,3 +93,11 @@ class Room(object):
                 if self.tiles[x][y].name == "shopping":
                     shopping_tile_list.append((x*tile.width, y*tile.height))
         return shopping_tile_list
+
+    def list_sword_tiles(self):
+        sword_tile_list = []
+        for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].name == "sword":
+                    sword_tile_list.append((x*tile.width, y*tile.height))
+        return sword_tile_list

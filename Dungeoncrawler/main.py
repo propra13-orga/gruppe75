@@ -10,6 +10,7 @@ from item import*
 from enemy import*
 from spell import*
 
+global leben
 global spell_var
 # Init 
 pygame.init()
@@ -99,7 +100,14 @@ def check_for_shopping(player_pos,map):
     if player_pos in shopping_list:
         return True
     else:
-        return False 
+        return False
+
+def check_for_swords(player_pos,map):
+    sword_list = map.list_sword_tiles()
+    if player_pos in sword_list:
+        return True
+    else:
+        return False
 
 def damage_manager(aggressor,opfer):
     damage = aggressor.get_damage()
@@ -180,6 +188,8 @@ def shop_menu(shop_mana, shop_money):
 global level
 level = 1
 def game():
+    global leben
+    leben = 3
     global spell_var
     spell_var = False
     global level
@@ -194,6 +204,10 @@ def game():
     map = room.load(os.path.join("data", "level1.txt"))
     screen = pygame.display.get_surface()
     fist = weapon("fist",1,32)
+    sword1 = weapon("sword1", 50,32)
+    sword2 = weapon("sword2", 50,32)
+    sword3 = weapon("sword3", 50,32)
+    sword4 = weapon("sword4", 50,32)
     none = armor("none",0,"bild")
     player1 = player("player1",fist,none,100,50,1000,[],pygame.image.load(os.path.join(os.path.join("tiles"), "player.png")).convert_alpha())
     player1.change_position((32,32))
@@ -218,6 +232,7 @@ def game():
                 #Steuerung
                 elif event.key == pygame.K_UP:
                     #check, welches Feld wir betreten
+                    sword = check_for_swords((player_pos[0],player_pos[1]-32),map)
                     back = check_for_back((player_pos[0],player_pos[1]-32),map)
                     fireballs = check_for_fireballs((player_pos[0],player_pos[1]-32),map)
                     traps = check_for_trap((player_pos[0],player_pos[1]-32),map)
@@ -240,7 +255,7 @@ def game():
                                 pygame.display.flip()
                                 time.sleep(3)
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
-                            player_1.change_position((32,32))
+                            player1.change_position((32,32))
                             enemy1.change_position((320,256))
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
@@ -253,7 +268,19 @@ def game():
                             screen.blit(fail,(0,0))
                             pygame.display.flip()
                             time.sleep(3)
-                            menu()
+                            if leben > 0:
+                                leben = leben -1
+                                if level == 1 or level == 2 or level == 3:
+                                    level = 1
+                                elif level == 4 or level == 5 or level == 6:
+                                    level = 4
+                                elif level == 7 or level == 8 or level == 9:
+                                    level = 7
+                                map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                                player1.change_position((32,32))
+                                enemy1.change_position((320,256))
+                            else:
+                                menu()
                         elif back == True:
                             level=level-1
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
@@ -279,6 +306,10 @@ def game():
                             mana_money_tupel = shop_menu(mana, money)
                             player1.set_mana(mana_money_tupel[0])
                             player1.set_money(mana_money_tupel[1])
+                        elif sword == True:
+                            player1.change_weapon(sword1)
+                            playerimage = pygame.image.load(os.path.join(os.path.join("tiles"), "player_sword.png")).convert_alpha()
+                            player1.change_image(playerimage)
                         else:
                             player1.change_position((player_pos[0],player_pos[1]-32))
                     elif collision == True:
@@ -286,6 +317,7 @@ def game():
                     
                 elif event.key == pygame.K_DOWN:
                     #check, welches Feld wir betreten
+                    sword = check_for_swords((player_pos[0],player_pos[1]+32),map)
                     back = check_for_back((player_pos[0],player_pos[1]+32),map)
                     fireballs = check_for_fireballs((player_pos[0],player_pos[1]+32),map)
                     traps = check_for_trap((player_pos[0],player_pos[1]+32),map)
@@ -321,7 +353,19 @@ def game():
                             screen.blit(fail,(0,0))
                             pygame.display.flip()
                             time.sleep(3)
-                            menu()
+                            if leben > 0:
+                                leben = leben -1
+                                if level == 1 or level == 2 or level == 3:
+                                    level = 1
+                                elif level == 4 or level == 5 or level == 6:
+                                    level = 4
+                                elif level == 7 or level == 8 or level == 9:
+                                    level = 7
+                                map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                                player1.change_position((32,32))
+                                enemy1.change_position((320,256))
+                            else:
+                                menu()
                         elif back == True:
                             level=level-1
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
@@ -348,6 +392,10 @@ def game():
                             mana_money_tupel = shop_menu(mana, money)
                             player1.set_mana(mana_money_tupel[0])
                             player1.set_money(mana_money_tupel[1])
+                        elif sword == True:
+                            player1.change_weapon(sword1)
+                            playerimage = pygame.image.load(os.path.join(os.path.join("tiles"), "player_sword.png")).convert_alpha()
+                            player1.change_image(playerimage)
                         else:
                             player1.change_position((player_pos[0],player_pos[1]+32))
                     elif collision == True:
@@ -355,6 +403,7 @@ def game():
                 
                 elif event.key == pygame.K_LEFT:
                     #check, welches Feld wir betreten
+                    sword = check_for_swords((player_pos[0]-32,player_pos[1]),map)
                     back = check_for_back((player_pos[0]-32,player_pos[1]),map)
                     fireballs = check_for_fireballs((player_pos[0]-32,player_pos[1]),map)
                     traps = check_for_trap((player_pos[0]-32,player_pos[1]),map)
@@ -390,7 +439,19 @@ def game():
                             screen.blit(fail,(0,0))
                             pygame.display.flip()
                             time.sleep(3)
-                            menu()
+                            if leben > 0:
+                                leben = leben -1
+                                if level == 1 or level == 2 or level == 3:
+                                    level = 1
+                                elif level == 4 or level == 5 or level == 6:
+                                    level = 4
+                                elif level == 7 or level == 8 or level == 9:
+                                    level = 7
+                                map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                                player1.change_position((32,32))
+                                enemy1.change_position((320,256))
+                            else:
+                                menu()
                         elif back == True:
                             level=level-1
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
@@ -417,6 +478,10 @@ def game():
                             mana_money_tupel = shop_menu(mana, money)
                             player1.set_mana(mana_money_tupel[0])
                             player1.set_money(mana_money_tupel[1])
+                        elif sword == True:
+                            player1.change_weapon(sword1)
+                            playerimage = pygame.image.load(os.path.join(os.path.join("tiles"), "player_sword.png")).convert_alpha()
+                            player1.change_image(playerimage)
                         else:
                             player1.change_position((player_pos[0]-32,player_pos[1]))
                     elif collision == True:
@@ -424,6 +489,7 @@ def game():
                 
                 elif event.key == pygame.K_RIGHT:
                     #check, welches Feld wir betreten
+                    sword = check_for_swords((player_pos[0]+32,player_pos[1]),map)
                     back = check_for_back((player_pos[0]+32,player_pos[1]),map)
                     fireballs = check_for_fireballs((player_pos[0]+32,player_pos[1]),map)
                     traps = check_for_trap((player_pos[0]+32,player_pos[1]),map)
@@ -459,7 +525,19 @@ def game():
                             screen.blit(fail,(0,0))
                             pygame.display.flip()
                             time.sleep(3)
-                            menu()
+                            if leben > 0:
+                                leben = leben -1
+                                if level == 1 or level == 2 or level == 3:
+                                    level = 1
+                                elif level == 4 or level == 5 or level == 6:
+                                    level = 4
+                                elif level == 7 or level == 8 or level == 9:
+                                    level = 7
+                                map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                                player1.change_position((32,32))
+                                enemy1.change_position((320,256))
+                            else:
+                                menu()
                         elif back == True:
                             level=level-1
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
@@ -486,6 +564,10 @@ def game():
                             mana_money_tupel = shop_menu(mana, money)
                             player1.set_mana(mana_money_tupel[0])
                             player1.set_money(mana_money_tupel[1])
+                        elif sword == True:
+                            player1.change_weapon(sword1)
+                            playerimage = pygame.image.load(os.path.join(os.path.join("tiles"), "player_sword.png")).convert_alpha()
+                            player1.change_image(playerimage)
                         else:
                             player1.change_position((player_pos[0]+32,player_pos[1]))
                     elif collision == True:
@@ -554,6 +636,15 @@ def game():
         text1 = font.render("Health:"+str(health), 1, (255, 255, 255))
         text2 = font.render("Mana:"+str(mana), 1, (255, 255, 255))
         text3 = font.render("Money:"+str(money), 1, (255, 255, 255))
+        if leben == 1:
+            leben1 = pygame.image.load(os.path.join(os.path.join("tiles"), "1leben.png")).convert_alpha()
+            screen.blit(leben1, (450,0))
+        elif leben == 2:
+            leben1 = pygame.image.load(os.path.join(os.path.join("tiles"), "2leben.png")).convert_alpha()
+            screen.blit(leben1, (450,0))
+        elif leben == 3:
+            leben1 = pygame.image.load(os.path.join(os.path.join("tiles"), "3leben.png")).convert_alpha()
+            screen.blit(leben1, (450,0))
         screen.blit(text1, (0,0))
         screen.blit(text2, (150,0))
         screen.blit(text3, (300,0))
