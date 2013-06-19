@@ -1,5 +1,7 @@
 import pygame
 import graphics
+import os
+
 class player(object):
     #Variablentypen
     #name: string, weapon: weapon object, armor: armor object, health: int,
@@ -52,3 +54,10 @@ class player(object):
         return self.armor
     def get_items(self):
         return self.items
+    def launch_spell(self, direction):
+        if direction == "UP" or direction == "DOWN":
+            spell = pygame.image.load(os.path.join(os.path.join("tiles"), "32x32t.png")).convert_alpha()
+            return spell
+        elif direction == "LEFT" or direction == "RIGHT":
+            spell = pygame.image.load(os.path.join(os.path.join("tiles"), "32x32r.png")).convert_alpha()
+            return spell
