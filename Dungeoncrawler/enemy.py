@@ -117,3 +117,10 @@ class enemy(object):
                         if collision == False:
                             self.position = (self.position[0]+32,self.position[1])
                             direction = "left"
+    def launch_spell(self, direction):
+        if direction == "UP" or direction == "DOWN":
+            spell = pygame.image.load(os.path.join(os.path.join("tiles"), "32x32t.png")).convert_alpha()
+            return spell
+        elif direction == "LEFT" or direction == "RIGHT":
+            spell = pygame.image.load(os.path.join(os.path.join("tiles"), "32x32r.png")).convert_alpha()
+            return spell
