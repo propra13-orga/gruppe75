@@ -23,9 +23,9 @@ tile_info = {
     "S" : ("sword", False, "sword.png"),
     "I" : ("interact", False, "interact.png"),
     "G" : ("shopping", False, "shop.png"),
-	"M" : ("managain", False, "mana.png"),
-	"H" : ("healthgain", False, "heiltrank.png"),
-	"C" : ("cashgain", False, "gold.png")
+    "M" : ("managain", False, "mana.png"),
+    "H" : ("healthgain", False, "heiltrank.png"),
+    "C" : ("cashgain", False, "gold.png")
 
     }
     

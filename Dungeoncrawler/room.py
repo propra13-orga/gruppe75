@@ -101,3 +101,27 @@ class Room(object):
                 if self.tiles[x][y].name == "sword":
                     sword_tile_list.append((x*tile.width, y*tile.height))
         return sword_tile_list
+    
+    def list_mana_tiles(self):
+        mana_tile_list = []
+        for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].name == "managain":
+                    mana_tile_list.append((x*tile.width, y*tile.height))
+        return mana_tile_list
+    
+    def list_health_tiles(self):
+        health_tile_list = []
+        for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].name == "healthgain":
+                    health_tile_list.append((x*tile.width, y*tile.height))
+        return health_tile_list
+    
+    def list_cash_tiles(self):
+        cash_tile_list = []
+        for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].name == "cashgain":
+                    cash_tile_list.append((x*tile.width, y*tile.height))
+        return cash_tile_list

@@ -109,6 +109,27 @@ def check_for_swords(player_pos,map):
     else:
         return False
 
+def check_for_mana(player_pos,map):
+    mana_list = map.list_mana_tiles()
+    if player_pos in mana_list:
+        return True
+    else:
+        return False
+
+def check_for_health(player_pos,map):
+    health_list = map.list_health_tiles()
+    if player_pos in health_list:
+        return True
+    else:
+        return False
+    
+def check_for_cash(player_pos,map):
+    cash_list = map.list_cash_tiles()
+    if player_pos in cash_list:
+        return True
+    else:
+        return False
+        
 def damage_manager(aggressor,opfer):
     damage = aggressor.get_damage()
     opfer_health = opfer.get_health()
@@ -234,6 +255,9 @@ def game():
                 #Steuerung
                 elif event.key == pygame.K_UP:
                     #check, welches Feld wir betreten
+                    cash = check_for_cash((player_pos[0],player_pos[1]-32),map)
+                    health = check_for_health((player_pos[0],player_pos[1]-32),map)
+                    mana = check_for_mana((player_pos[0],player_pos[1]-32),map)
                     sword = check_for_swords((player_pos[0],player_pos[1]-32),map)
                     back = check_for_back((player_pos[0],player_pos[1]-32),map)
                     fireballs = check_for_fireballs((player_pos[0],player_pos[1]-32),map)
@@ -259,6 +283,15 @@ def game():
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
+                        elif cash == True:
+                            player1.set_money(player1.get_money()+100)
+                            player1.change_position((player_pos[0],player_pos[1]-32))
+                        elif mana == True:
+                            player1.set_mana(player1.get_mana()+30)
+                            player1.change_position((player_pos[0],player_pos[1]-32))
+                        elif health == True:
+                            player1.set_health(player1.get_health()+20)
+                            player1.change_position((player_pos[0],player_pos[1]-32))
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(0,0))
@@ -319,6 +352,9 @@ def game():
                     
                 elif event.key == pygame.K_DOWN:
                     #check, welches Feld wir betreten
+                    cash = check_for_cash((player_pos[0],player_pos[1]+32),map)
+                    health = check_for_health((player_pos[0],player_pos[1]+32),map)
+                    mana = check_for_mana((player_pos[0],player_pos[1]+32),map)
                     sword = check_for_swords((player_pos[0],player_pos[1]+32),map)
                     back = check_for_back((player_pos[0],player_pos[1]+32),map)
                     fireballs = check_for_fireballs((player_pos[0],player_pos[1]+32),map)
@@ -344,6 +380,15 @@ def game():
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
+                        elif cash == True:
+                            player1.set_money(player1.get_money()+100)
+                            player1.change_position((player_pos[0],player_pos[1]+32))
+                        elif mana == True:
+                            player1.set_mana(player1.get_mana()+30)
+                            player1.change_position((player_pos[0],player_pos[1]+32))
+                        elif health == True:
+                            player1.set_health(player1.get_health()+20)
+                            player1.change_position((player_pos[0],player_pos[1]+32))
                         elif finish == True and level == 3:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(0,0))
@@ -405,6 +450,9 @@ def game():
                 
                 elif event.key == pygame.K_LEFT:
                     #check, welches Feld wir betreten
+                    cash = check_for_cash((player_pos[0]-32,player_pos[1]),map)
+                    health = check_for_health((player_pos[0]-32,player_pos[1]),map)
+                    mana = check_for_mana((player_pos[0]-32,player_pos[1]),map)
                     sword = check_for_swords((player_pos[0]-32,player_pos[1]),map)
                     back = check_for_back((player_pos[0]-32,player_pos[1]),map)
                     fireballs = check_for_fireballs((player_pos[0]-32,player_pos[1]),map)
@@ -430,6 +478,15 @@ def game():
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
+                        elif cash == True:
+                            player1.set_money(player1.get_money()+100)
+                            player1.change_position((player_pos[0]-32,player_pos[1]))
+                        elif mana == True:
+                            player1.set_mana(player1.get_mana()+30)
+                            player1.change_position((player_pos[0]-32,player_pos[1]))
+                        elif health == True:
+                            player1.set_health(player1.get_health()+20)
+                            player1.change_position((player_pos[0]-32,player_pos[1]))
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(0,0))
@@ -491,6 +548,9 @@ def game():
                 
                 elif event.key == pygame.K_RIGHT:
                     #check, welches Feld wir betreten
+                    cash = check_for_cash((player_pos[0]+32,player_pos[1]),map)
+                    health = check_for_health((player_pos[0]+32,player_pos[1]),map)
+                    mana = check_for_mana((player_pos[0]+32,player_pos[1]),map)
                     sword = check_for_swords((player_pos[0]+32,player_pos[1]),map)
                     back = check_for_back((player_pos[0]+32,player_pos[1]),map)
                     fireballs = check_for_fireballs((player_pos[0]+32,player_pos[1]),map)
@@ -516,6 +576,15 @@ def game():
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
+                        elif cash == True:
+                            player1.set_money(player1.get_money()+100)
+                            player1.change_position((player_pos[0]+32,player_pos[1]))
+                        elif mana == True:
+                            player1.set_mana(player1.get_mana()+30)
+                            player1.change_position((player_pos[0]+32,player_pos[1]))
+                        elif health == True:
+                            player1.set_health(player1.get_health()+20)
+                            player1.change_position((player_pos[0]+32,player_pos[1]))
                         elif finish == True:
                             win = pygame.image.load(os.path.join(os.path.join("tiles"), "win.png")).convert_alpha()
                             screen.blit(win,(0,0))
