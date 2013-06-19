@@ -1,6 +1,13 @@
 import pygame
 import os
-from main import check_for_collision
+
+def check_for_collision(player_pos,map):
+    solid_list = map.list_solid_tiles()
+    if player_pos in solid_list:
+        return True
+    else:
+        return False 
+
 
 class spell(object):
     def __init__(self, position, direction, damage, image):

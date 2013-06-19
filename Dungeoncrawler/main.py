@@ -8,6 +8,9 @@ import sys
 from player import*
 from item import*
 from enemy import*
+from spell import*
+
+global spell_var
 # Init 
 pygame.init()
 pygame.mouse.set_visible(1)
@@ -177,6 +180,8 @@ def shop_menu(shop_mana, shop_money):
 global level
 level = 1
 def game():
+    global spell_var
+    spell_var = False
     global level
     level = 1
     pygame.init()
@@ -211,7 +216,7 @@ def game():
                 if event.key == pygame.K_ESCAPE:
                     pygame.event.post(pygame.event.Event(pygame.QUIT))
                 #Steuerung
-                if event.key == pygame.K_UP:
+                elif event.key == pygame.K_UP:
                     #check, welches Feld wir betreten
                     back = check_for_back((player_pos[0],player_pos[1]-32),map)
                     fireballs = check_for_fireballs((player_pos[0],player_pos[1]-32),map)
@@ -279,7 +284,7 @@ def game():
                     elif collision == True:
                         pass
                     
-                if event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_DOWN:
                     #check, welches Feld wir betreten
                     back = check_for_back((player_pos[0],player_pos[1]+32),map)
                     fireballs = check_for_fireballs((player_pos[0],player_pos[1]+32),map)
@@ -348,7 +353,7 @@ def game():
                     elif collision == True:
                         pass
                 
-                if event.key == pygame.K_LEFT:
+                elif event.key == pygame.K_LEFT:
                     #check, welches Feld wir betreten
                     back = check_for_back((player_pos[0]-32,player_pos[1]),map)
                     fireballs = check_for_fireballs((player_pos[0]-32,player_pos[1]),map)
@@ -417,7 +422,7 @@ def game():
                     elif collision == True:
                         pass
                 
-                if event.key == pygame.K_RIGHT:
+                elif event.key == pygame.K_RIGHT:
                     #check, welches Feld wir betreten
                     back = check_for_back((player_pos[0]+32,player_pos[1]),map)
                     fireballs = check_for_fireballs((player_pos[0]+32,player_pos[1]),map)
@@ -485,12 +490,60 @@ def game():
                             player1.change_position((player_pos[0]+32,player_pos[1]))
                     elif collision == True:
                         pass
-                     
+                elif event.key == pygame.K_w:
+                    mana = player1.get_mana()
+                    if mana < 10:
+                        pass
+                    elif mana >= 10:
+                        player1.set_mana(player1.get_mana()-10)
+                        
+                        spell_pic = player1.launch_spell("UP")
+                        spell1 = spell(player1.get_position(),"UP",10,spell_pic)
+                        spell_var = True
+                
+                elif event.key == pygame.K_s:
+                    mana = player1.get_mana()
+                    if mana < 10:
+                        pass
+                    elif mana >= 10:
+                        player1.set_mana(player1.get_mana()-10)
+                        
+                        spell_pic = player1.launch_spell("DOWN")
+                        spell1 = spell(player1.get_position(),"DOWN",10,spell_pic)
+                        spell_var = True
+                 
+                elif event.key == pygame.K_a:
+                    mana = player1.get_mana()
+                    if mana < 10:
+                        pass
+                    elif mana >= 10:
+                        player1.set_mana(player1.get_mana()-10)
+                        
+                        spell_pic = player1.launch_spell("LEFT")
+                        spell1 = spell(player1.get_position(),"LEFT",10,spell_pic)
+                        spell_var = True
+        
+                elif event.key == pygame.K_d:
+                    mana = player1.get_mana()
+                    if mana < 10:
+                        pass
+                    elif mana >= 10:
+                        player1.set_mana(player1.get_mana()-10)
+                        
+                        spell_pic = player1.launch_spell("RIGHT")
+                        spell1 = spell(player1.get_position(),"RIGHT",10,spell_pic)
+                        spell_var = True    
         
         
         # draw map on screen
         map.draw(screen)
         enemy1.move(map)
+        if spell_var == True:
+            spell_var = spell1.move(map)
+            if spell_var == False:
+                del spell1
+            elif spell_var == True:
+                screen.blit(spell1.get_image(), spell1.get_position())
         screen.blit(player1.get_image(),player1.get_position())
         screen.blit(enemy1.get_image(), enemy1.get_position())
         
