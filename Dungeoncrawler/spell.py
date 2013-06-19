@@ -40,7 +40,7 @@ class spell(object):
     def move(self, map, player1, enemy1, boss):
         if self.direction == "UP":
             solid = check_for_collision((self.position[0],self.position[1]-32),map)
-            enemy = check_for_enemy(playe1, enemy1, boss, (self.position[0],self.position[1]-32))
+            enemy = check_for_enemy(player1, enemy1, boss, (self.position[0],self.position[1]-32))
             if solid == False:
                 if enemy == player1:
                     player1.set_health(player1.get_health()-self.damage)
@@ -59,7 +59,7 @@ class spell(object):
                 return False
         elif self.direction == "DOWN":
             solid = check_for_collision((self.position[0],self.position[1]+32),map)
-            enemy = check_for_enemy(playe1, enemy1, boss, (self.position[0],self.position[1]+32))
+            enemy = check_for_enemy(player1, enemy1, boss, (self.position[0],self.position[1]+32))
             if solid == False:
                 self.position = (self.position[0],self.position[1]+32)
                 return True
@@ -67,7 +67,7 @@ class spell(object):
                 return False
         elif self.direction == "LEFT":
             solid = check_for_collision((self.position[0]-32,self.position[1]),map)
-            enemy = check_for_enemy(playe1, enemy1, boss, (self.position[0]-32,self.position[1]))
+            enemy = check_for_enemy(player1, enemy1, boss, (self.position[0]-32,self.position[1]))
             if solid == False:
                 self.position = (self.position[0]-32,self.position[1])
                 return True
@@ -75,7 +75,7 @@ class spell(object):
                 return False
         elif self.direction == "RIGHT":
             solid = check_for_collision((self.position[0]+32,self.position[1]),map)
-            enemy = check_for_enemy(playe1, enemy1, boss, (self.position[0]+32,self.position[1]))
+            enemy = check_for_enemy(player1, enemy1, boss, (self.position[0]+32,self.position[1]))
             if solid == False:
                 self.position = (self.position[0]+32,self.position[1])
                 return True

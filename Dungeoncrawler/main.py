@@ -11,7 +11,9 @@ from enemy import*
 from spell import*
 
 global leben
-global spell_var
+global spell_var1
+global spell_var2
+global spell_var3
 # Init 
 pygame.init()
 pygame.mouse.set_visible(1)
@@ -213,8 +215,12 @@ level = 1
 def game():
     global leben
     leben = 3
-    global spell_var
-    spell_var = False
+    global spell_var1
+    global spell_var2
+    global spell_var3
+    spell_var2 = False
+    spell_var3 = False
+    spell_var1 = False
     global level
     level = 1
     pygame.init()
@@ -235,9 +241,9 @@ def game():
     player1 = player("player1",fist,none,100,50,1000,[],pygame.image.load(os.path.join(os.path.join("tiles"), "player.png")).convert_alpha())
     player1.change_position((32,32))
     enemy1 = enemy("gegner", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha())
-    
+    boss = enemy("boss", 30, 200, 3000, 0, (-64,-64), pygame.image.load(os.path.join(os.path.join("tiles"), "endgegner.png")).convert_alpha())
     # running = True, game loop
-    
+    schritt = 0
     running = True
     while running:
         # run game with 30 frames
@@ -653,7 +659,7 @@ def game():
                         
                         spell_pic = player1.launch_spell("UP")
                         spell1 = spell(player1.get_position(),"UP",10,spell_pic)
-                        spell_var = True
+                        spell_var1 = True
                 
                 elif event.key == pygame.K_s:
                     mana = player1.get_mana()
@@ -664,7 +670,7 @@ def game():
                         
                         spell_pic = player1.launch_spell("DOWN")
                         spell1 = spell(player1.get_position(),"DOWN",10,spell_pic)
-                        spell_var = True
+                        spell_var1 = True
                  
                 elif event.key == pygame.K_a:
                     mana = player1.get_mana()
@@ -675,7 +681,7 @@ def game():
                         
                         spell_pic = player1.launch_spell("LEFT")
                         spell1 = spell(player1.get_position(),"LEFT",10,spell_pic)
-                        spell_var = True
+                        spell_var1 = True
         
                 elif event.key == pygame.K_d:
                     mana = player1.get_mana()
@@ -686,9 +692,12 @@ def game():
                         
                         spell_pic = player1.launch_spell("RIGHT")
                         spell1 = spell(player1.get_position(),"RIGHT",10,spell_pic)
-                        spell_var = True    
-        
-        
+                        spell_var1 = True    
+        schritt = schritt + 1
+        if schritt == 5:
+            spell2 = spell(boss.get_position(),"RIGHT",20,pygame.image.load(os.path.join(os.path.join("tiles"), "32x32r.png")).convert_alpha())
+            spell3 = spell(boss.get_position(),"LEFT",20,pygame.image.load(os.path.join(os.path.join("tiles"), "32x32r.png")).convert_alpha())
+            schritt = 0
         # draw map on screen
         map.draw(screen)
         enemy1.move(map)
@@ -719,14 +728,31 @@ def game():
             except:
                 enemy1 = enemy("gegner", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha())
                 enemy1.change_position((-16,-16))
-        if spell_var == True:
-            spell_var = spell1.move(map)
-            if spell_var == False:
+        if spell_var1 == True:
+            spell_var1 = spell1.move(map, player1, enemy1, boss)
+            if spell_var1 == False:
                 del spell1
-            elif spell_var == True:
+            elif spell_var1 == True:
                 screen.blit(spell1.get_image(), spell1.get_position())
+        if spell_var2 == True:
+            spell_var2 = spell2.move(map, player1, enemy1, boss)
+            if spell_var2 == False:
+                del spell2
+            elif spell_var2 == True:
+                screen.blit(spell2.get_image(), spell2.get_position())
+        if spell_var3 == True:
+            spell_var3 = spell3.move(map, player1, enemy1, boss)
+            if spell_var3 == False:
+                del spell3
+            elif spell_var3 == True:
+                screen.blit(spell3.get_image(), spell3.get_position())
         screen.blit(player1.get_image(),player1.get_position())
         screen.blit(enemy1.get_image(), enemy1.get_position())
+        if level == 3 or level == 6 or level ==9:
+            boss.change_position((320,240))
+        else:
+            boss.change_position((-64,-64))
+        screen.blit(boss.get_image(),boss.get_position())
         
         mana = player1.get_mana()
         health = player1.get_health()
