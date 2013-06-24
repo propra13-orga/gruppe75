@@ -247,7 +247,7 @@ def game():
     running = True
     while running:
         # run game with 30 frames
-        clock.tick(30)
+        clock.tick(10)
         # screen surface black
         screen.fill((0, 0, 0))
         player_pos = player1.get_position()

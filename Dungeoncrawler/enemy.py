@@ -39,6 +39,12 @@ class enemy(object):
         return self.position
     def change_position(self, new_position):
         self.position = new_position
+    def take_damage(self, damage):
+        health = self.health - damage
+        if health <= 0:
+            del self
+        else:
+            self.health = health
     def move(self, map):
         global direction
         if direction == "up":

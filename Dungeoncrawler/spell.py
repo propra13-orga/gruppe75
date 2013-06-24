@@ -5,8 +5,8 @@ from enemy import*
 
 def check_for_enemy( player1, enemy1, boss, position):
     liste = [player1.get_position(),enemy1.get_position(),boss.get_position()]
-    if position in liste:
-        for item in liste:
+    for item in liste:
+        if item == position:
             return item
     else:
         return False
@@ -42,42 +42,84 @@ class spell(object):
             solid = check_for_collision((self.position[0],self.position[1]-32),map)
             enemy = check_for_enemy(player1, enemy1, boss, (self.position[0],self.position[1]-32))
             if solid == False:
-                if enemy == player1:
-                    player1.set_health(player1.get_health()-self.damage)
+                if enemy == player1.get_position():
+                    player1.take_damage(self.damage)
+                    self.position = (self.position[0],self.position[1]-32)
                     return False
-                elif enemy == enemy1:
-                    enemy1.set_health(enemy.get_health()-self.damage)
+                elif enemy == enemy1.get_position():
+                    enemy1.take_damage(self.damage)
+                    self.position = (self.position[0],self.position[1]-32)
                     return False
-                elif enemy == boss:
-                    boss.set_health(boss.get_health()-self.damage)
+                elif enemy == boss.get_position():
+                    boss.take_damage(self.damage)
+                    self.position = (self.position[0],self.position[1]-32)
                     return False
                 else:
                     self.position = (self.position[0],self.position[1]-32)
                     return True
-                
             elif solid == True:
                 return False
+            
         elif self.direction == "DOWN":
             solid = check_for_collision((self.position[0],self.position[1]+32),map)
             enemy = check_for_enemy(player1, enemy1, boss, (self.position[0],self.position[1]+32))
             if solid == False:
-                self.position = (self.position[0],self.position[1]+32)
-                return True
+                if enemy == player1.get_position():
+                    player1.take_damage(self.damage)
+                    self.position = (self.position[0],self.position[1]+32)
+                    return False
+                elif enemy == enemy1.get_position():
+                    enemy1.take_damage(self.damage)
+                    self.position = (self.position[0],self.position[1]+32)
+                    return False
+                elif enemy == boss.get_position():
+                    boss.take_damage(self.damage)
+                    self.position = (self.position[0],self.position[1]+32)
+                    return False
+                else:
+                    self.position = (self.position[0],self.position[1]+32)
+                    return True
             elif solid == True:
                 return False
         elif self.direction == "LEFT":
             solid = check_for_collision((self.position[0]-32,self.position[1]),map)
             enemy = check_for_enemy(player1, enemy1, boss, (self.position[0]-32,self.position[1]))
             if solid == False:
-                self.position = (self.position[0]-32,self.position[1])
-                return True
+                if enemy == player1.get_position():
+                    player1.take_damage(self.damage)
+                    self.position = (self.position[0]-32,self.position[1])
+                    return False
+                elif enemy == enemy1.get_position():
+                    enemy1.take_damage(self.damage)
+                    self.position = (self.position[0]-32,self.position[1])
+                    return False
+                elif enemy == boss.get_position():
+                    boss.take_damage(self.damage)
+                    self.position = (self.position[0]-32,self.position[1])
+                    return False
+                else:
+                    self.position = (self.position[0]-32,self.position[1])
+                    return True
             elif solid == True:
                 return False
         elif self.direction == "RIGHT":
             solid = check_for_collision((self.position[0]+32,self.position[1]),map)
             enemy = check_for_enemy(player1, enemy1, boss, (self.position[0]+32,self.position[1]))
             if solid == False:
-                self.position = (self.position[0]+32,self.position[1])
-                return True
+                if enemy == player1.get_position():
+                    player1.take_damage(self.damage)
+                    self.position = (self.position[0]+32,self.position[1])
+                    return False
+                elif enemy == enemy1.get_position():
+                    enemy1.take_damage(self.damage)
+                    self.position = (self.position[0]+32,self.position[1])
+                    return False
+                elif enemy == boss.get_position():
+                    boss.take_damage(self.damage)
+                    self.position = (self.position[0]+32,self.position[1])
+                    return False
+                else:
+                    self.position = (self.position[0]+32,self.position[1])
+                    return True
             elif solid == True:
                 return False

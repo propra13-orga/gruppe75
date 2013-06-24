@@ -54,6 +54,12 @@ class player(object):
         return self.armor
     def get_items(self):
         return self.items
+    def take_damage(self, damage):
+        health = self.health - damage
+        if health <= 0:
+            del self
+        else:
+            self.health = health
     def launch_spell(self, direction):
         if direction == "UP" or direction == "DOWN":
             spell = pygame.image.load(os.path.join(os.path.join("tiles"), "32x32t.png")).convert_alpha()
