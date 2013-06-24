@@ -241,7 +241,7 @@ def game():
     player1 = player("player1",fist,none,100,50,1000,[],pygame.image.load(os.path.join(os.path.join("tiles"), "player.png")).convert_alpha())
     player1.change_position((32,32))
     enemy1 = enemy("gegner", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha())
-    boss = enemy("boss", 30, 200, 3000, 0, (-64,-64), pygame.image.load(os.path.join(os.path.join("tiles"), "endgegner.png")).convert_alpha())
+    boss = enemy("boss", 30, 200, 3000, 0, (-320,-64), pygame.image.load(os.path.join(os.path.join("tiles"), "endgegner.png")).convert_alpha())
     # running = True, game loop
     schritt = 0
     running = True
@@ -290,6 +290,11 @@ def game():
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
+                            if level == 3 or level == 6 or level ==9:
+                                boss.change_position((320,256))
+                                boss.set_health(200)
+                            else:
+                                boss.change_position((-320,-64))
                         elif cash == True:
                             player1.set_money(player1.get_money()+100)
                             player1.change_position((player_pos[0],player_pos[1]-32))
@@ -308,6 +313,7 @@ def game():
                         elif traps == True:
                             fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
                             screen.blit(fail,(0,0))
+                            player1.set_health(100)
                             pygame.display.flip()
                             time.sleep(3)
                             if leben > 0:
@@ -387,6 +393,11 @@ def game():
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
+                            if level == 3 or level == 6 or level ==9:
+                                boss.change_position((320,256))
+                                boss.set_health(200)
+                            else:
+                                boss.change_position((-320,-64))
                         elif cash == True:
                             player1.set_money(player1.get_money()+100)
                             player1.change_position((player_pos[0],player_pos[1]+32))
@@ -405,6 +416,7 @@ def game():
                         elif traps == True:
                             fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
                             screen.blit(fail,(0,0))
+                            player1.set_health(100)
                             pygame.display.flip()
                             time.sleep(3)
                             if leben > 0:
@@ -485,6 +497,11 @@ def game():
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
+                            if level == 3 or level == 6 or level ==9:
+                                boss.change_position((320,256))
+                                boss.set_health(200)
+                            else:
+                                boss.change_position((-3200,-64))
                         elif cash == True:
                             player1.set_money(player1.get_money()+100)
                             player1.change_position((player_pos[0]-32,player_pos[1]))
@@ -503,6 +520,7 @@ def game():
                         elif traps == True:
                             fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
                             screen.blit(fail,(0,0))
+                            player1.set_health(100)
                             pygame.display.flip()
                             time.sleep(3)
                             if leben > 0:
@@ -523,6 +541,11 @@ def game():
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
+                            if level == 3 or level == 6 or level ==9:
+                                boss.change_position((320,256))
+                                boss.set_health(200)
+                            else:
+                                boss.change_position((-320,-64))
                         elif interact == True:
                             interact_image = pygame.image.load(os.path.join(os.path.join("tiles"), "interact_image.png")).convert_alpha()
                             screen.blit(interact_image,(0,0))
@@ -583,6 +606,11 @@ def game():
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
+                            if level == 3 or level == 6 or level ==9:
+                                boss.change_position((320,256))
+                                boss.set_health(200)
+                            else:
+                                boss.change_position((-320,-64))
                         elif cash == True:
                             player1.set_money(player1.get_money()+100)
                             player1.change_position((player_pos[0]+32,player_pos[1]))
@@ -601,6 +629,7 @@ def game():
                         elif traps == True:
                             fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
                             screen.blit(fail,(0,0))
+                            player1.set_health(100)
                             pygame.display.flip()
                             time.sleep(3)
                             if leben > 0:
@@ -621,6 +650,11 @@ def game():
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
+                            if level == 3 or level == 6 or level ==9:
+                                boss.change_position((320,256))
+                                boss.set_health(200)
+                            else:
+                                boss.change_position((-320,-64))
                         elif interact == True:
                             interact_image = pygame.image.load(os.path.join(os.path.join("tiles"), "interact_image.png")).convert_alpha()
                             screen.blit(interact_image,(0,0))
@@ -697,6 +731,8 @@ def game():
         if schritt == 5:
             spell2 = spell(boss.get_position(),"RIGHT",20,pygame.image.load(os.path.join(os.path.join("tiles"), "32x32r.png")).convert_alpha())
             spell3 = spell(boss.get_position(),"LEFT",20,pygame.image.load(os.path.join(os.path.join("tiles"), "32x32r.png")).convert_alpha())
+            spell_var2 = True
+            spell_var3 = True
             schritt = 0
         # draw map on screen
         map.draw(screen)
@@ -706,6 +742,7 @@ def game():
             if player1.get_health() <=0 :
                 fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
                 screen.blit(fail,(0,0))
+                player1.set_health(100)
                 pygame.display.flip()
                 time.sleep(3)
                 if leben > 0:
@@ -727,7 +764,7 @@ def game():
                 screen.blit(enemy1.get_image(),enemy1.get_position())
             except:
                 enemy1 = enemy("gegner", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha())
-                enemy1.change_position((-16,-16))
+                enemy1.change_position((-32,-32))
         if spell_var1 == True:
             spell_var1 = spell1.move(map, player1, enemy1, boss)
             if spell_var1 == False:
@@ -746,14 +783,34 @@ def game():
                 del spell3
             elif spell_var3 == True:
                 screen.blit(spell3.get_image(), spell3.get_position())
-        screen.blit(player1.get_image(),player1.get_position())
-        screen.blit(enemy1.get_image(), enemy1.get_position())
-        if level == 3 or level == 6 or level ==9:
-            boss.change_position((320,240))
+        if player1.get_health() > 0:
+            screen.blit(player1.get_image(),player1.get_position())
         else:
-            boss.change_position((-64,-64))
-        screen.blit(boss.get_image(),boss.get_position())
-        
+            fail = pygame.image.load(os.path.join(os.path.join("tiles"), "lost.png")).convert_alpha()
+            screen.blit(fail,(0,0))
+            player1.set_health(100)
+            pygame.display.flip()
+            time.sleep(3)
+            if leben > 0:
+                leben = leben -1
+                if level == 1 or level == 2 or level == 3:
+                    level = 1
+                elif level == 4 or level == 5 or level == 6:
+                    level = 4
+                elif level == 7 or level == 8 or level == 9:
+                    level = 7
+                map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                player1.change_position((32,32))
+                enemy1.change_position((320,256))
+            else:
+                menu()
+        if enemy1.get_health() <= 0:
+            pass
+        else:
+            screen.blit(enemy1.get_image(), enemy1.get_position())
+        if boss.get_health() > 0:
+            screen.blit(boss.get_image(),boss.get_position())
+            boss.move(map)
         mana = player1.get_mana()
         health = player1.get_health()
         money = player1.get_money()

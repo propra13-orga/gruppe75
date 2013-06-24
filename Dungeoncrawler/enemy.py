@@ -42,7 +42,7 @@ class enemy(object):
     def take_damage(self, damage):
         health = self.health - damage
         if health <= 0:
-            del self
+            self.health = health
         else:
             self.health = health
     def move(self, map):
