@@ -802,8 +802,12 @@ def game():
                 map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                 player1.change_position((32,32))
                 enemy1.change_position((320,256))
+                boss.change_position((-320,-320))
             else:
                 menu()
+        if player1.get_position() == boss.get_position() or player1.get_position() == (boss.get_position()[0]+32,boss.get_position()[1]) or player1.get_position() == (boss.get_position()[0],boss.get_position()[1]+32) or player1.get_position() == (boss.get_position()[0]+32,boss.get_position()[1]+32):
+            player1.take_damage(40)
+        
         if enemy1.get_health() <= 0:
             pass
         else:
