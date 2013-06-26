@@ -327,6 +327,7 @@ def game():
                                 map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                                 player1.change_position((32,32))
                                 enemy1.change_position((320,256))
+                                boss.change_position((-320,-320))
                             else:
                                 menu()
                         elif back == True:
@@ -428,6 +429,7 @@ def game():
                                 elif level == 7 or level == 8 or level == 9:
                                     level = 7
                                 map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                                boss.change_position((-320,-320))
                                 player1.change_position((32,32))
                                 enemy1.change_position((320,256))
                             else:
@@ -532,6 +534,7 @@ def game():
                                 elif level == 7 or level == 8 or level == 9:
                                     level = 7
                                 map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                                boss.change_position((-320,-320))
                                 player1.change_position((32,32))
                                 enemy1.change_position((320,256))
                             else:
@@ -641,6 +644,7 @@ def game():
                                 elif level == 7 or level == 8 or level == 9:
                                     level = 7
                                 map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                                boss.change_position((-320,-320))
                                 player1.change_position((32,32))
                                 enemy1.change_position((320,256))
                             else:
