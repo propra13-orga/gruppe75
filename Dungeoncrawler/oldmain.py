@@ -56,7 +56,7 @@ def main():
     
     
     tile.init()
-    map = room.load(os.path.join("data", "level.txt"))
+    map = room.load(os.path.join("data", "level1.txt"))
     screen = pygame.display.get_surface()
     
     running = True
