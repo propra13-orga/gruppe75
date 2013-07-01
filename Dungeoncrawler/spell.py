@@ -3,7 +3,7 @@ import os
 from player import*
 from enemy import*
 
-def check_for_enemy( player1, enemy1, boss, position):
+def check_for_enemy( player1, enemy1, enemy2, boss, position):
     liste = [player1.get_position(),enemy1.get_position(),enemy2.get_position(),boss.get_position()]
     for item in liste:
         if item == position:

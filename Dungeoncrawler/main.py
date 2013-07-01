@@ -241,6 +241,7 @@ def game():
     player1 = player("player1",fist,none,100,50,1000,[],pygame.image.load(os.path.join(os.path.join("tiles"), "player.png")).convert_alpha())
     player1.change_position((32,32))
     enemy1 = enemy("gegner", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha())
+    enemy2 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha())
     boss = enemy("boss", 30, 200, 3000, 0, (-320,-64), pygame.image.load(os.path.join(os.path.join("tiles"), "endgegner.png")).convert_alpha())
     # running = True, game loop
     schritt = 0
@@ -770,19 +771,19 @@ def game():
                 enemy1 = enemy("gegner", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha())
                 enemy1.change_position((-32,-32))
         if spell_var1 == True:
-            spell_var1 = spell1.move(map, player1, enemy1, boss)
+            spell_var1 = spell1.move(map, player1, enemy1, enemy2, boss)
             if spell_var1 == False:
                 del spell1
             elif spell_var1 == True:
                 screen.blit(spell1.get_image(), spell1.get_position())
         if spell_var2 == True:
-            spell_var2 = spell2.move(map, player1, enemy1, boss)
+            spell_var2 = spell2.move(map, player1, enemy1, enemy2, boss)
             if spell_var2 == False:
                 del spell2
             elif spell_var2 == True:
                 screen.blit(spell2.get_image(), spell2.get_position())
         if spell_var3 == True:
-            spell_var3 = spell3.move(map, player1, enemy1, boss)
+            spell_var3 = spell3.move(map, player1, enemy1, enemy2, boss)
             if spell_var3 == False:
                 del spell3
             elif spell_var3 == True:
