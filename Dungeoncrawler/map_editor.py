@@ -3,6 +3,9 @@ import graphics
 import room
 import tile
 
+black = (0,0,0)
+white = (255,255,255)
+
 def map_editor_menu():
     pygame.init()
     pygame.display.set_mode(graphics.screen_size)
