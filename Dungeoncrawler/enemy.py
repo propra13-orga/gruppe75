@@ -11,7 +11,7 @@ def check_for_collision(player_pos,map):
 global direction
 direction = "up"
 class enemy(object):
-    def __init__(self, name, damage, health, mana, damage_reduction, position, image):
+    def __init__(self, name, damage, health, mana, damage_reduction, position, image, type):
         self.position = position
         self.image = image
         self.name = name
@@ -19,6 +19,7 @@ class enemy(object):
         self.health = health
         self.mana = mana
         self.damage_reduction = damage_reduction
+        self.type=type
     def get_image(self):
         return self.image
     def get_name(self):
@@ -39,12 +40,55 @@ class enemy(object):
         return self.position
     def change_position(self, new_position):
         self.position = new_position
-    def take_damage(self, damage):
-        health = self.health - damage
-        if health <= 0:
-            self.health = health
-        else:
-            self.health = health
+    def take_damage(self, damage, type):
+
+        if(self.type==type):
+            #no damage
+            self.health=self.health+(damage/10)
+        
+        if(self.type=="fire" and type=="water"):
+            #full damage
+            self.health=self.health-damage
+        if(self.type=="fire" and type=="air"):
+            #half damage 
+            self.health=self.health-(damage/2)
+        if(self.type=="fire" and type=="earth"):
+            #quarter damage
+            self.health=self.health-(damage/4)
+        if(self.type=="water" and type=="fire"):
+            #full damage
+            self.health=self.health-damage
+        if(self.type=="water" and type=="earth"):
+            #half damage
+            self.health=self.health-(damage/2)
+        if(self.type=="water" and type=="air"):
+            #quarter damage
+            self.health=self.health-(damage/10)
+        if(self.type=="air" and type=="fire"):
+            #full damage
+            self.health=self.health-damage
+        if(self.type=="air" and type=="water"):
+            #half damage
+            self.health=self.health-(damage/2)
+        if(self.type=="air" and type=="earth"):
+            #quarter damage
+            self.health=self.health-(damage/4)
+        if(self.type=="earth" and type=="earth"):
+            #full damage
+            self.health=self.health-damage
+        if(self.type=="earth" and type=="water"):
+            #full damage
+            self.health=self.health-damage
+        if(self.type=="earth" and type=="air"):
+            #half damage
+            self.health=self.health-(damage/2)
+        if(self.type=="earth" and type=="fire"):
+            #quarter damage
+            self.health=self.health-(damage/4)
+                
+        if self.health <= 0:
+            self.health = 0
+
     def move(self, map):
         global direction
         if direction == "up":

@@ -221,6 +221,7 @@ def game():
     spell_var2 = False
     spell_var3 = False
     spell_var1 = False
+    spell_type = "fire"
     global level
     level = 1
     pygame.init()
@@ -240,9 +241,9 @@ def game():
     none = armor("none",0,"bild")
     player1 = player("player1",fist,none,100,50,1000,[],pygame.image.load(os.path.join(os.path.join("tiles"), "player.png")).convert_alpha())
     player1.change_position((32,32))
-    enemy1 = enemy("gegner", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha())
-    enemy2 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha())
-    boss = enemy("boss", 30, 200, 3000, 0, (-320,-64), pygame.image.load(os.path.join(os.path.join("tiles"), "endgegner.png")).convert_alpha())
+    enemy2 = enemy("gegner", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha(),"fire")    
+    enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha(),"fire")
+    boss = enemy("boss", 30, 200, 3000, 0, (-320,-64), pygame.image.load(os.path.join(os.path.join("tiles"), "endgegner.png")).convert_alpha(),"fire")
     # running = True, game loop
     schritt = 0
     running = True
@@ -289,6 +290,10 @@ def game():
                                 pygame.display.flip()
                                 time.sleep(3)
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                            if((level/3)%2==1):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha(),"fire")
+                            if((level/3)%2==0):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner2.png")).convert_alpha(),"water")
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
                             if level == 3 or level == 6 or level ==9:
@@ -335,6 +340,10 @@ def game():
                             level=level-1
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
                             player1.change_position((32,32))
+                            if((level/3)%2==1):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha(),"fire")
+                            if((level/3)%2==0):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner2.png")).convert_alpha(),"water")
                             enemy1.change_position((320,256))
                         elif interact == True:
                             interact_image = pygame.image.load(os.path.join(os.path.join("tiles"), "interact_image.png")).convert_alpha()
@@ -393,6 +402,10 @@ def game():
                                 pygame.display.flip()
                                 time.sleep(3)
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
+                            if((level/3)%2==1):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha(),"fire")
+                            if((level/3)%2==0):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner2.png")).convert_alpha(),"water")
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
                             if level == 3 or level == 6 or level ==9:
@@ -438,6 +451,10 @@ def game():
                         elif back == True:
                             level=level-1
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                            if((level/3)%2==1):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha(),"fire")
+                            if((level/3)%2==0):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner2.png")).convert_alpha(),"water")
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
                         elif interact == True:
@@ -498,6 +515,10 @@ def game():
                                 pygame.display.flip()
                                 time.sleep(3)
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
+                            if((level/3)%2==1):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha(),"fire")
+                            if((level/3)%2==0):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner2.png")).convert_alpha(),"water")
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
                             if level == 3 or level == 6 or level ==9:
@@ -543,6 +564,10 @@ def game():
                         elif back == True:
                             level=level-1
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                            if((level/3)%2==1):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha(),"fire")
+                            if((level/3)%2==0):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner2.png")).convert_alpha(),"water")
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
                             if level == 3 or level == 6 or level ==9:
@@ -608,6 +633,10 @@ def game():
                                 pygame.display.flip()
                                 time.sleep(3)    
                             map = room.load(os.path.join("data", "level"+str(level)+".txt"))
+                            if((level/3)%2==1):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha(),"fire")
+                            if((level/3)%2==0):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner2.png")).convert_alpha(),"water")
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
                             if level == 3 or level == 6 or level ==9:
@@ -653,6 +682,10 @@ def game():
                         elif back == True:
                             level=level-1
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                            if((level/3)%2==1):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha(),"fire")
+                            if((level/3)%2==0):
+                                enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner2.png")).convert_alpha(),"water")
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
                             if level == 3 or level == 6 or level ==9:
@@ -689,6 +722,10 @@ def game():
                             player1.change_position((player_pos[0]+32,player_pos[1]))
                     elif collision == True:
                         pass
+                elif event.key == pygame.K_1:
+                        spell_type = "fire"
+                elif event.key == pygame.K_2:
+                        spell_type = "water"
                 elif event.key == pygame.K_w:
                     mana = player1.get_mana()
                     if mana < 10:
@@ -696,8 +733,8 @@ def game():
                     elif mana >= 10:
                         player1.set_mana(player1.get_mana()-10)
                         
-                        spell_pic = player1.launch_spell("UP")
-                        spell1 = spell(player1.get_position(),"UP",10,spell_pic)
+                        spell_pic = player1.launch_spell("UP",spell_type)
+                        spell1 = spell(player1.get_position(),"UP",10,spell_pic,spell_type)
                         spell_var1 = True
                 
                 elif event.key == pygame.K_s:
@@ -707,8 +744,8 @@ def game():
                     elif mana >= 10:
                         player1.set_mana(player1.get_mana()-10)
                         
-                        spell_pic = player1.launch_spell("DOWN")
-                        spell1 = spell(player1.get_position(),"DOWN",10,spell_pic)
+                        spell_pic = player1.launch_spell("DOWN",spell_type)
+                        spell1 = spell(player1.get_position(),"DOWN",10,spell_pic,spell_type)
                         spell_var1 = True
                  
                 elif event.key == pygame.K_a:
@@ -718,8 +755,8 @@ def game():
                     elif mana >= 10:
                         player1.set_mana(player1.get_mana()-10)
                         
-                        spell_pic = player1.launch_spell("LEFT")
-                        spell1 = spell(player1.get_position(),"LEFT",10,spell_pic)
+                        spell_pic = player1.launch_spell("LEFT",spell_type)
+                        spell1 = spell(player1.get_position(),"LEFT",10,spell_pic,spell_type)
                         spell_var1 = True
         
                 elif event.key == pygame.K_d:
@@ -729,13 +766,13 @@ def game():
                     elif mana >= 10:
                         player1.set_mana(player1.get_mana()-10)
                         
-                        spell_pic = player1.launch_spell("RIGHT")
-                        spell1 = spell(player1.get_position(),"RIGHT",10,spell_pic)
+                        spell_pic = player1.launch_spell("RIGHT",spell_type)
+                        spell1 = spell(player1.get_position(),"RIGHT",10,spell_pic,spell_type)
                         spell_var1 = True    
         schritt = schritt + 1
         if schritt == 5:
-            spell2 = spell(boss.get_position(),"RIGHT",20,pygame.image.load(os.path.join(os.path.join("tiles"), "32x32r.png")).convert_alpha())
-            spell3 = spell(boss.get_position(),"LEFT",20,pygame.image.load(os.path.join(os.path.join("tiles"), "32x32r.png")).convert_alpha())
+            spell2 = spell(boss.get_position(),"RIGHT",20,pygame.image.load(os.path.join(os.path.join("tiles"), "32x32r.png")).convert_alpha(),"fire")
+            spell3 = spell(boss.get_position(),"LEFT",20,pygame.image.load(os.path.join(os.path.join("tiles"), "32x32r.png")).convert_alpha(),"fire")
             spell_var2 = True
             spell_var3 = True
             schritt = 0
@@ -768,7 +805,10 @@ def game():
                 damage_manager(player1,enemy1)
                 screen.blit(enemy1.get_image(),enemy1.get_position())
             except:
-                enemy1 = enemy("gegner", 10, 20, 0, 0, (320, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha())
+                if((level/3)%2==1):
+                    enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner.png")).convert_alpha(),"fire")
+                if((level/3)%2==0):
+                    enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner2.png")).convert_alpha(),"water")
                 enemy1.change_position((-32,-32))
         if spell_var1 == True:
             spell_var1 = spell1.move(map, player1, enemy1, enemy2, boss)
@@ -811,7 +851,7 @@ def game():
             else:
                 menu()
         if player1.get_position() == boss.get_position() or player1.get_position() == (boss.get_position()[0]+32,boss.get_position()[1]) or player1.get_position() == (boss.get_position()[0],boss.get_position()[1]+32) or player1.get_position() == (boss.get_position()[0]+32,boss.get_position()[1]+32):
-            player1.take_damage(40)
+            player1.take_damage(40,boss.type)
         
         if enemy1.get_health() <= 0:
             pass

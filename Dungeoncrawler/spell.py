@@ -21,11 +21,12 @@ def check_for_collision(player_pos,map):
 
 
 class spell(object):
-    def __init__(self, position, direction, damage, image):
+    def __init__(self, position, direction, damage, image,type):
         self.position = position
         self.direction = direction
         self.damage = damage
         self.image = image
+        self.type = type
         
     def get_position(self):
         return self.position
@@ -43,15 +44,15 @@ class spell(object):
             enemy = check_for_enemy(player1, enemy1, boss, (self.position[0],self.position[1]-32))
             if solid == False:
                 if enemy == player1.get_position():
-                    player1.take_damage(self.damage)
+                    player1.take_damage(self.damage,self.type)
                     self.position = (self.position[0],self.position[1]-32)
                     return False
                 elif enemy == enemy1.get_position():
-                    enemy1.take_damage(self.damage)
+                    enemy1.take_damage(self.damage,self.type)
                     self.position = (self.position[0],self.position[1]-32)
                     return False
                 elif enemy == boss.get_position():
-                    boss.take_damage(self.damage)
+                    boss.take_damage(self.damage,self.type)
                     self.position = (self.position[0],self.position[1]-32)
                     return False
                 else:
@@ -65,15 +66,15 @@ class spell(object):
             enemy = check_for_enemy(player1, enemy1, enemy2, boss, (self.position[0],self.position[1]+32))
             if solid == False:
                 if enemy == player1.get_position():
-                    player1.take_damage(self.damage)
+                    player1.take_damage(self.damage,self.type)
                     self.position = (self.position[0],self.position[1]+32)
                     return False
                 elif enemy == enemy1.get_position():
-                    enemy1.take_damage(self.damage)
+                    enemy1.take_damage(self.damage,self.type)
                     self.position = (self.position[0],self.position[1]+32)
                     return False
                 elif enemy == boss.get_position():
-                    boss.take_damage(self.damage)
+                    boss.take_damage(self.damage,self.type)
                     self.position = (self.position[0],self.position[1]+32)
                     return False
                 else:
@@ -86,15 +87,15 @@ class spell(object):
             enemy = check_for_enemy(player1, enemy1, enemy2, boss, (self.position[0]-32,self.position[1]))
             if solid == False:
                 if enemy == player1.get_position():
-                    player1.take_damage(self.damage)
+                    player1.take_damage(self.damage,self.type)
                     self.position = (self.position[0]-32,self.position[1])
                     return False
                 elif enemy == enemy1.get_position():
-                    enemy1.take_damage(self.damage)
+                    enemy1.take_damage(self.damage,self.type)
                     self.position = (self.position[0]-32,self.position[1])
                     return False
                 elif enemy == boss.get_position():
-                    boss.take_damage(self.damage)
+                    boss.take_damage(self.damage,self.type)
                     self.position = (self.position[0]-32,self.position[1])
                     return False
                 else:
@@ -107,15 +108,15 @@ class spell(object):
             enemy = check_for_enemy(player1, enemy1, enemy2, boss, (self.position[0]+32,self.position[1]))
             if solid == False:
                 if enemy == player1.get_position():
-                    player1.take_damage(self.damage)
+                    player1.take_damage(self.damage,self.type)
                     self.position = (self.position[0]+32,self.position[1])
                     return False
                 elif enemy == enemy1.get_position():
-                    enemy1.take_damage(self.damage)
+                    enemy1.take_damage(self.damage,self.type)
                     self.position = (self.position[0]+32,self.position[1])
                     return False
                 elif enemy == boss.get_position():
-                    boss.take_damage(self.damage)
+                    boss.take_damage(self.damage,self.type)
                     self.position = (self.position[0]+32,self.position[1])
                     return False
                 else:
