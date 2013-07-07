@@ -41,7 +41,7 @@ class spell(object):
     def move(self, map, player1, enemy1, enemy2,  boss):
         if self.direction == "UP":
             solid = check_for_collision((self.position[0],self.position[1]-32),map)
-            enemy = check_for_enemy(player1, enemy1, boss, (self.position[0],self.position[1]-32))
+            enemy = check_for_enemy(player1, enemy1, enemy2, boss, (self.position[0],self.position[1]-32))
             if solid == False:
                 if enemy == player1.get_position():
                     player1.take_damage(self.damage,self.type)
