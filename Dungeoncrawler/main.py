@@ -867,6 +867,7 @@ def game():
         text1 = font.render("Health:"+str(health), 1, (255, 255, 255))
         text2 = font.render("Mana:"+str(mana), 1, (255, 255, 255))
         text3 = font.render("Money:"+str(money), 1, (255, 255, 255))
+        text4 = font.render(spell_type, 1, (255, 255, 255))
         if leben == 1:
             leben1 = pygame.image.load(os.path.join(os.path.join("tiles"), "1leben.png")).convert_alpha()
             screen.blit(leben1, (450,0))
@@ -879,6 +880,7 @@ def game():
         screen.blit(text1, (0,0))
         screen.blit(text2, (150,0))
         screen.blit(text3, (300,0))
+        screen.blit(text4, (600,0))
         pygame.display.flip()
         
 def main():
