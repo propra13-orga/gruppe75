@@ -15,6 +15,7 @@ def map_editor_menu():
     clock = pygame.time.Clock()
     tile.init()
     screen = pygame.display.get_surface()
+    screen1 = screen.get_surface()
     running = True
     while running:
         # run game with 30 frames
@@ -31,6 +32,7 @@ def map_editor_menu():
                     map_editor()
                 elif event.key == pygame.K_BACK:
                     menu()
+        
         pygame.display.flip()
 
 
@@ -60,6 +62,7 @@ pygame.key.set_repeat(1, 30)
 clock = pygame.time.Clock()
 tile.init()
 screen = pygame.display.get_surface()
+screen1 = screen[]
 running = True
 while running:
     # run game with 30 frames
