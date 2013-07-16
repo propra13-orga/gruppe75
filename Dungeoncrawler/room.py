@@ -85,6 +85,22 @@ class Room(object):
                 if self.tiles[x][y].name == "interact":
                     interact_tile_list.append((x*tile.width, y*tile.height))
         return interact_tile_list
+         # prueft auf interact2
+    def list_interact2_tiles(self):
+        interact2_tile_list = []
+        for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].name == "interact2":
+                    interact2_tile_list.append((x*tile.width, y*tile.height))
+        return interact2_tile_list
+     # prueft auf quest
+    def list_quest_tiles(self):
+        quest_tile_list = []
+        for x in range(cols):
+            for y in range(rows):
+                if self.tiles[x][y].name == "quest":
+                    quest_tile_list.append((x*tile.width, y*tile.height))
+        return quest_tile_list
       #prueft auf shopping
     def list_shopping_tiles(self):
         shopping_tile_list = []
