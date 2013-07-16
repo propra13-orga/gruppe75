@@ -1,0 +1,21 @@
+Wie man das Spiel starten kann: 
+1. Python Installieren (Informationen hierzu gibt es in der Readme.txt)
+2. Die Datei main.py ausführen.
+
+Das Menu:
+Nachdem Sie das Spiel erfolgreich gestartet haben, erscheint das Menu. Dort können SIe sich zwischen verschiedenen
+Aktionen Entscheiden:
+1. Mit der Eingabetaste starten Sie das Hauptspiel
+2. Mit der Taste m starten Sie den Karteneditor
+3. Mit Esc Taste Beenden Sie das Programm
+
+Das Hauptspiel:
+1. Die Bewegung des Spielers erfolgt mit den Pfeiltasten
+2. Mit den Tasten W, A, S und D schießen Se Zaubernach oben, links, unten und rechts ab.
+3. Mit der Taste 1 Können sie den Feuerzauber auswählen, mit der Taste 2 den Wasserzauber.
+	Mit Feuer können Sie blaue Gegner töten und mit Wasser die Roten.
+4. Wenn Sie sich über einen Manabrunnen bewegen wird Ihr Mana aufgefrischt
+5. Wenn Sie sich über einen Lebensbrunnen bewegen erhalten Sie Leben
+
+Der Karteneditor:
+1. Mit Esc beenden Sie das Programm

@@ -80,3 +80,26 @@ while running:
             elif event.key == pygame.K_BACK:
                 menu()
     pygame.display.flip()
+
+    def map_editor():
+    pygame.init()
+    pygame.display.set_mode(graphics.screen_size)
+    pygame.display.set_caption("Dungeon Crawler")
+    pygame.mouse.set_visible(1)
+    pygame.key.set_repeat(1, 30)
+    clock = pygame.time.Clock()
+    tile.init()
+    screen = pygame.display.get_surface()
+    running = True
+    while running:
+        # run game with 30 frames
+        clock.tick(30)
+        # screen surface black
+        screen.fill((0, 0, 0))
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if (event.key == pygame.K_ESCAPE):
+                    sys.exit()
+        map = room.load(os.path.join("data", "level1.txt"))
+        map.draw(screen)
+        pygame.display.flip()
