@@ -2,7 +2,6 @@ import pygame
 import graphics
 import os
 
-#djdfgvkjchxzjcrmdvfbjv
 class player(object):
     #Variablentypen
     #name: string, weapon: weapon object, armor: armor object, health: int,

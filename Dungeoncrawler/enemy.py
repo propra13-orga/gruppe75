@@ -12,6 +12,7 @@ global direction
 direction = "up"
 class enemy(object):
     def __init__(self, name, damage, health, mana, damage_reduction, position, image, type):
+        self.alife = True
         self.position = position
         self.image = image
         self.name = name
@@ -89,6 +90,12 @@ class enemy(object):
         if self.health <= 0:
             self.health = 0
 
+    def set_alife(self, boolean):
+        self.alife = boolean
+        
+    def get_alife(self):
+        return self.alife
+    
     def move(self, map):
         global direction
         if direction == "up":

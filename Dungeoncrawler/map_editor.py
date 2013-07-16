@@ -2,6 +2,7 @@ import pygame
 import graphics
 import room
 import tile
+from main import menu
 
 black = (0,0,0)
 white = (255,255,255)
@@ -62,7 +63,6 @@ pygame.key.set_repeat(1, 30)
 clock = pygame.time.Clock()
 tile.init()
 screen = pygame.display.get_surface()
-screen1 = screen[]
 running = True
 while running:
     # run game with 30 frames
