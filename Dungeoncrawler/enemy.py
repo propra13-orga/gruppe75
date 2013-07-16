@@ -12,7 +12,7 @@ global direction
 direction = "up"
 class enemy(object):
     def __init__(self, name, damage, health, mana, damage_reduction, position, image, type):
-        self.alife = True
+        self.alife = False
         self.position = position
         self.image = image
         self.name = name
