@@ -9,6 +9,9 @@ from player import*
 from item import*
 from enemy import*
 from spell import*
+parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,parentdir) 
+from Mastermind import *
 
 global leben
 global spell_var1
@@ -22,6 +25,22 @@ pygame.mouse.set_visible(1)
 white = 255,255,255
 black = 0,0,0
 
+ip = "localhost"
+port = 6317
+
+demo = 0
+if demo == 0:
+    ClassClient = MastermindClientTCP
+    ClassServer = MastermindServerTCP
+else:
+    ClassClient = MastermindClientUDP
+    ClassServer = MastermindServerUDP
+    
+class Server(MastermindServerCallbacksEcho,MastermindServerCallbacksDebug,ClassServer):
+    def __init__(self):
+        ClassServer.__init__(self)
+        
+        
 # hintergrund
 def backGroundScreen(colour):
    screen = pygame.display.set_mode((640,480))  
@@ -920,3 +939,16 @@ def main():
 # call main method
 if __name__ == "__main__":
     main()
+    server = Server()
+    server.connect(ip,port)
+    server.accepting_allow()
+    client = ClassClient(1.0,1.0)
+    client.connect(ip,port)
+    print()
+    
+    client.disconnect()
+    print()
+
+    server.accepting_disallow()
+    server.disconnect_clients()
+    server.disconnect()
