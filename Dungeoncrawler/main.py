@@ -108,10 +108,24 @@ def check_for_back(player_pos,map):
         return True
     else:
         return False
-        
+
 def check_for_interact(player_pos,map):
     interact_list = map.list_interact_tiles()
     if player_pos in interact_list:
+        return True
+    else:
+        return False
+
+def check_for_interact2(player_pos,map):
+    interact2_list = map.list_interact2_tiles()
+    if player_pos in interact2_list:
+        return True
+    else:
+        return False
+        
+def check_for_quest(player_pos,map):
+    quest_list = map.list_quest_tiles()
+    if player_pos in quest_list:
         return True
     else:
         return False       
@@ -178,7 +192,148 @@ def menu():
     if done == True:
         #game()
         return 0
-       
+
+story_level_1 = ["",
+                 "The murderer in the Rue Morgue was:",
+                 "A:     The sailor",
+                 "B:     Dupin",
+                 "C:     The orangutan",
+                 "       A, B or C?",
+                 "",
+                 ""]
+story_level_2 = ["",
+                 "The detective from the Orient Express", 
+                 "Nun antworte mir: Nun antworte mir",
+                 "A: Sherlock Holmes",
+                 "B: Miss Marple",
+                 "C: Hercule Poirot",
+                 "Now give me the answer:",
+                 "A, B or C?"]
+story_level_3 = ["Level 3",
+                 "The detective from the Orient Express", 
+                 "Nun antworte mir: Nun antworte mir",
+                 "A: Sherlock Holmes",
+                 "B: Miss Marple",
+                 "C: Hercule Poirot",
+                 "Now give me the answer:",
+                 "A, B or C?"]
+story_level_4 = ["Level 4", 
+                 "",
+                 "The murderer in the Rue Morgue was:",
+                 "A:     The sailor",
+                 "B:     Dupin",
+                 "C:     The orangutan",
+                 "",
+                 "A, B or C?"]
+story_level_5 = ["Level 5",
+                 "The detective from the Orient Express", 
+                 "Nun antworte mir: Nun antworte mir",
+                 "A: Sherlock Holmes",
+                 "B: Miss Marple",
+                 "C: Hercule Poirot",
+                 "Now give me the answer:",
+                 "A, B or C?"]
+story_level_6 = ["Level 6", 
+                 "",
+                 "The murderer in the Rue Morgue was:",
+                 "A:     The sailor",
+                 "B:     Dupin",
+                 "C:     The orangutan",
+                 "",
+                 "A, B or C?"]
+story_level_7 = ["Level 7",
+                 "The detective from the Orient Express", 
+                 "Nun antworte mir: Nun antworte mir",
+                 "A: Sherlock Holmes",
+                 "B: Miss Marple",
+                 "C: Hercule Poirot",
+                 "Now give me the answer:",
+                 "A, B or C?"]
+story_level_8 = ["Level 8", 
+                 "",
+                 "The murderer in the Rue Morgue was:",
+                 "A:     The sailor",
+                 "B:     Dupin",
+                 "C:     The orangutan",
+                 "",
+                 "A, B or C?"]
+story_level_9 = ["Level 9",
+                 "The detective from the Orient Express", 
+                 "Nun antworte mir: Nun antworte mir",
+                 "A: Sherlock Holmes",
+                 "B: Miss Marple",
+                 "C: Hercule Poirot",
+                 "Now give me the answer:",
+                 "A, B or C?"]
+story = [story_level_1, story_level_2, story_level_3, story_level_4, story_level_5, story_level_6, story_level_7, story_level_8, story_level_9]
+
+def quest_menu(level, quest_mana, quest_money):
+    background = black
+    x_offset = 40
+    y_offset = 50
+    y_step = 40
+    maximum_mana_per_player_quest = 3000
+    maximum_money_per_player_quest = 30000
+    statuszeile = ""
+    screen = backGroundScreen(background)
+    been_there_done_that = 0
+    done = False
+    while not done:
+        header = pygame.image.load(os.path.join(os.path.join("tiles"), "quest_image.png")).convert_alpha()
+        screen.blit(header,(0,0))
+        font = pygame.font.Font(None, 40)
+        text_quest_mana = font.render("Mana:"+str(quest_mana), 1, (0, 0, 0))
+        text_quest_money = font.render("Money:"+str(quest_money), 1, (0, 0, 0))
+        screen.blit(text_quest_mana, (280,10))
+        screen.blit(text_quest_money, (450,10))
+        for text_line_no in range(8):
+            # range(8) = 0..7
+            text_single_line = font.render(story[level-1][text_line_no], 1, (0, 0, 0))
+            screen.blit(text_single_line, (x_offset,y_offset+text_line_no*y_step))
+        text_leave = font.render("Leave: Press L", 1, (0, 0, 0))
+        statuszeilenausgabe = font.render(statuszeile, 1, (0, 0, 0))
+        screen.blit(statuszeilenausgabe, (40,320))
+        screen.blit(text_leave, (40,390))
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                # leave quest
+                if event.key == pygame.K_l:
+                    done = True
+                #print "Already done"
+                if been_there_done_that == 1: 
+                    statuszeile = "Already answered!"
+                elif event.key == pygame.K_a:
+                    # zu viel Mana nicht erlaubt
+                    if quest_mana - 10 >= 0:
+                        # zu wenig Geld geht auch nicht
+                        if quest_money -200 >= 0:
+                            quest_mana = quest_mana - 10
+                            quest_money = quest_money - 200
+                            been_there_done_that = 1
+                            statuszeile = u"Falsch!"
+                elif event.key == pygame.K_b:
+                    # zu wenig Mana nicht erlaubt
+                    if quest_mana - 10 >= 0:
+                        # zu wenig Geld geht auch nicht
+                        if quest_money -200 >= 0:
+                            quest_mana = quest_mana - 10
+                            quest_money = quest_money - 200
+                            been_there_done_that = 1
+                            statuszeile = u"Nein!"
+                elif event.key == pygame.K_c:
+                    # zu wenig Mana nicht erlaubt
+                    if quest_mana + 10 < maximum_mana_per_player_quest:
+                        # zu wenig Geld geht auch nicht
+                        if quest_money + 200 < maximum_money_per_player_quest:
+                            quest_mana = quest_mana + 10
+                            quest_money = quest_money + 200
+                            been_there_done_that = 1
+                            statuszeile = u"Richtig!"
+        # END OF for event in ...
+    if done == True:
+        return (level, quest_mana, quest_money)
+                              
 def shop_menu(shop_mana, shop_money):
 # one mana unit is ... money units
     mana_to_money_ratio = 10
@@ -293,8 +448,10 @@ def game():
                     finish = check_for_finish((player_pos[0],player_pos[1]-32),map)
                     warp = check_for_warppoint((player_pos[0],player_pos[1]-32),map)
                     collision = check_for_collision((player_pos[0],player_pos[1]-32),map)
-                    interact = check_for_interact((player_pos[0],player_pos[1]-32),map)
+                    quest = check_for_quest((player_pos[0],player_pos[1]-32),map)
                     shopping = check_for_shopping((player_pos[0],player_pos[1]-32),map)
+                    interact = check_for_interact((player_pos[0],player_pos[1]-32),map)
+                    interact2 = check_for_interact2((player_pos[0],player_pos[1]-32),map)
                     if collision == False:
                         if warp == True:
                             if boss.get_alife() == True:
@@ -376,6 +533,27 @@ def game():
                             screen.blit(interact_image,(0,0))
                             pygame.display.flip()
                             time.sleep(2)
+                        elif interact2 == True:
+                            interact2_image = pygame.image.load(os.path.join(os.path.join("tiles"), "interact_image2.png")).convert_alpha()
+                            screen.blit(interact2_image,(0,0))
+                            pygame.display.flip()
+                            time.sleep(2)
+                        elif quest == True:
+                            quest_image = pygame.image.load(os.path.join(os.path.join("tiles"), "quest_image.png")).convert_alpha()
+                            screen.blit(quest_image,(0,0))
+                            pygame.display.flip()
+                            mana = player1.get_mana()
+                            money = player1.get_money()
+                            font = pygame.font.Font(None, 70)
+                            text2 = font.render("Mana:"+str(mana), 1, (255, 255, 255))
+                            text3 = font.render("Money:"+str(money), 1, (255, 255, 255))
+                            screen.blit(text2, (100,50))
+                            screen.blit(text3, (330,50))
+                            pygame.display.flip()
+                            mana_money_tupel_quest = quest_menu(level, mana, money)
+                            player1.set_mana(mana_money_tupel_quest[1])
+                            player1.set_money(mana_money_tupel_quest[2])
+                           
                         elif shopping == True:
                             map.draw(screen)
                             shopping_image = pygame.image.load(os.path.join(os.path.join("tiles"), "shopping.png")).convert_alpha()
@@ -413,6 +591,8 @@ def game():
                     warp = check_for_warppoint((player_pos[0],player_pos[1]+32),map)
                     collision = check_for_collision((player_pos[0],player_pos[1]+32),map)
                     interact = check_for_interact((player_pos[0],player_pos[1]+32),map)
+                    interact2 = check_for_interact2((player_pos[0],player_pos[1]+32),map)
+                    quest = check_for_quest((player_pos[0],player_pos[1]+32),map)
                     shopping = check_for_shopping((player_pos[0],player_pos[1]+32),map)
                     if collision == False:
                         if warp == True:
@@ -496,6 +676,28 @@ def game():
                             pygame.display.flip()
                             time.sleep(2)
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                        elif interact2 == True:
+                            interact2_image = pygame.image.load(os.path.join(os.path.join("tiles"), "interact_image2.png")).convert_alpha()
+                            screen.blit(interact2_image,(0,0))
+                            pygame.display.flip()
+                            time.sleep(2)
+                            map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                        elif quest == True:
+                            quest_image = pygame.image.load(os.path.join(os.path.join("tiles"), "quest_image.png")).convert_alpha()
+                            screen.blit(quest_image,(0,0))
+                            pygame.display.flip()
+                            mana = player1.get_mana()
+                            money = player1.get_money()
+                            font = pygame.font.Font(None, 70)
+                            text2 = font.render("Mana:"+str(mana), 1, (255, 255, 255))
+                            text3 = font.render("Money:"+str(money), 1, (255, 255, 255))
+                            screen.blit(text2, (100,50))
+                            screen.blit(text3, (330,50))
+                            pygame.display.flip()
+                            mana_money_tupel_quest = quest_menu(level, mana, money)
+                            player1.set_mana(mana_money_tupel_quest[1])
+                            player1.set_money(mana_money_tupel_quest[2])
+                           
                         elif shopping == True:
                             map.draw(screen)
                             shopping_image = pygame.image.load(os.path.join(os.path.join("tiles"), "shopping.png")).convert_alpha()
@@ -533,6 +735,8 @@ def game():
                     warp = check_for_warppoint((player_pos[0]-32,player_pos[1]),map)
                     collision = check_for_collision((player_pos[0]-32,player_pos[1]),map)
                     interact = check_for_interact((player_pos[0]-32,player_pos[1]),map)
+                    interact2 = check_for_interact2((player_pos[0]-32,player_pos[1]),map)
+                    quest = check_for_quest((player_pos[0]-32,player_pos[1]),map)
                     shopping = check_for_shopping((player_pos[0]-32,player_pos[1]),map)
                     if collision == False:
                         if warp == True:
@@ -621,6 +825,28 @@ def game():
                             pygame.display.flip()
                             time.sleep(2)
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                        elif interact2 == True:
+                            interact2_image = pygame.image.load(os.path.join(os.path.join("tiles"), "interact_image2.png")).convert_alpha()
+                            screen.blit(interact2_image,(0,0))
+                            pygame.display.flip()
+                            time.sleep(2)
+                            map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                        elif quest == True:
+                            quest_image = pygame.image.load(os.path.join(os.path.join("tiles"), "quest_image.png")).convert_alpha()
+                            screen.blit(quest_image,(0,0))
+                            pygame.display.flip()
+                            mana = player1.get_mana()
+                            money = player1.get_money()
+                            font = pygame.font.Font(None, 70)
+                            text2 = font.render("Mana:"+str(mana), 1, (255, 255, 255))
+                            text3 = font.render("Money:"+str(money), 1, (255, 255, 255))
+                            screen.blit(text2, (100,50))
+                            screen.blit(text3, (330,50))
+                            pygame.display.flip()
+                            mana_money_tupel_quest = quest_menu(level, mana, money)
+                            player1.set_mana(mana_money_tupel_quest[1])
+                            player1.set_money(mana_money_tupel_quest[2])
+                            
                         elif shopping == True:
                             map.draw(screen)
                             shopping_image = pygame.image.load(os.path.join(os.path.join("tiles"), "shopping.png")).convert_alpha()
@@ -658,6 +884,8 @@ def game():
                     warp = check_for_warppoint((player_pos[0]+32,player_pos[1]),map)
                     collision = check_for_collision((player_pos[0]+32,player_pos[1]),map)
                     interact = check_for_interact((player_pos[0]+32,player_pos[1]),map)
+                    interact2 = check_for_interact2((player_pos[0]+32,player_pos[1]),map)
+                    quest = check_for_quest((player_pos[0]+32,player_pos[1]),map)
                     shopping = check_for_shopping((player_pos[0]+32,player_pos[1]),map)
                     if collision == False:
                         if warp == True:
@@ -746,6 +974,28 @@ def game():
                             pygame.display.flip()
                             time.sleep(5)
                             map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                        elif interact2 == True:
+                            interact2_image = pygame.image.load(os.path.join(os.path.join("tiles"), "interact_image2.png")).convert_alpha()
+                            screen.blit(interact2_image,(0,0))
+                            pygame.display.flip()
+                            time.sleep(5)
+                            map = room.load(os.path.join("data", "level"+ str(level) +".txt"))
+                        elif quest == True:
+                            quest_image = pygame.image.load(os.path.join(os.path.join("tiles"), "quest_image.png")).convert_alpha()
+                            screen.blit(quest_image,(0,0))
+                            pygame.display.flip()
+                            mana = player1.get_mana()
+                            money = player1.get_money()
+                            font = pygame.font.Font(None, 70)
+                            text2 = font.render("Mana:"+str(mana), 1, (255, 255, 255))
+                            text3 = font.render("Money:"+str(money), 1, (255, 255, 255))
+                            screen.blit(text2, (100,50))
+                            screen.blit(text3, (330,50))
+                            pygame.display.flip()
+                            mana_money_tupel_quest = quest_menu(level, mana, money)
+                            player1.set_mana(mana_money_tupel_quest[1])
+                            player1.set_money(mana_money_tupel_quest[2])
+                            
                         elif shopping == True:
                             map.draw(screen)
                             shopping_image = pygame.image.load(os.path.join(os.path.join("tiles"), "shopping.png")).convert_alpha()
