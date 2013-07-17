@@ -67,9 +67,12 @@ while not done:
                 done = True
             if event.key == pygame.K_m:
                 map_editor()
+            if event.key == pygame.K_c:
+                chat_client()
             if event.key == pygame.K_ESCAPE:
                 sys.exit()
     pygame.display.flip()
+    
 def check_for_collision(player_pos,map):
     solid_list = map.list_solid_tiles()
     if player_pos in solid_list:
@@ -1078,7 +1081,6 @@ def game():
                         spell1 = spell(player1.get_position(),"RIGHT",10,spell_pic,spell_type)
                         spell_var1 = True  
 
-                elif event.key == pygame.K_c:
                     
                         
         schritt = schritt + 1
