@@ -24,7 +24,14 @@ def load(file_in):
 class Room(object):
     def __init__(self, tiles):
         self.tiles = tiles
-        
+    
+    def get_tiles_and_coordinates(self):
+        dict = {}
+        for x in range(cols):
+            for y in range(rows):
+                dict.update({self.tiles[x][y]:(x*tile.width, y*tile.height)})
+        return dict
+    
     def draw(self, surface):
         for x in range(cols):
             for y in range(rows):
