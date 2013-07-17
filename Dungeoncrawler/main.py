@@ -67,8 +67,6 @@ while not done:
                 done = True
             if event.key == pygame.K_m:
                 map_editor()
-            if event.key == pygame.K_c:
-                chat_client()
             if event.key == pygame.K_ESCAPE:
                 sys.exit()
     pygame.display.flip()
