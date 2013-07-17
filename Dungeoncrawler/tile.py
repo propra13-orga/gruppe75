@@ -36,7 +36,8 @@ class Tile(object):
         self.name = name
         self.solid = solid
         self.surface = surface
-        
+    def get_name(self):
+        return self.name
         
 def init():
     global tile

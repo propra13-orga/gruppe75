@@ -95,12 +95,13 @@ def map_editor():
     screen = pygame.display.get_surface()
     running = True
     curser_position = (0,0)
-    liste = [] 
+    liste = {"floor":" ","wall": "#","warp":"+","finish":"-","Trap":"T","back":"B","sword":"S","interact":"I","shopping":"G","managain":"M","healthgain":"H","cashgain":"C","quest":"Q","interact2":"L"} 
     while running:
         # run game with 30 frames
         clock.tick(10)
         # screen surface black
         screen.fill((0, 0, 0))
+        map = room.load(os.path.join("data", "level" + str(level) + ".txt"))
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
@@ -146,9 +147,12 @@ def map_editor():
                         pass
                     else:
                         curser_position = (curser_position[0]+32, curser_position[1])
-                elif event.key == pygame.K_ENTER:
+                elif event.key == pygame.K_RETURN:
+                    dict = map.get_coordinates_and_tiles()
+                    block = dict[curser_position]
+                    name = block.get_name()
                     
-        map = room.load(os.path.join("data", "level" + str(level) + ".txt"))
+        
         map.draw(screen)
         curser = pygame.image.load(os.path.join(os.path.join("tiles"), "marker.png")).convert_alpha()
         screen.blit(curser,curser_position)

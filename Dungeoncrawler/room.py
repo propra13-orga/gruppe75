@@ -25,11 +25,11 @@ class Room(object):
     def __init__(self, tiles):
         self.tiles = tiles
     
-    def get_tiles_and_coordinates(self):
+    def get_coordinates_and_tiles(self):
         dict = {}
         for x in range(cols):
             for y in range(rows):
-                dict.update({self.tiles[x][y]:(x*tile.width, y*tile.height)})
+                dict.update({(x*tile.width, y*tile.height):self.tiles[x][y]})
         return dict
     
     def draw(self, surface):

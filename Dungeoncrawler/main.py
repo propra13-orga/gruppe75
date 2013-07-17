@@ -528,6 +528,7 @@ def game():
                             if((level/3)%2==0):
                                 enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner2.png")).convert_alpha(),"water")
                             enemy1.change_position((320,256))
+                            boss.set_alife(False)
                         elif interact == True:
                             interact_image = pygame.image.load(os.path.join(os.path.join("tiles"), "interact_image.png")).convert_alpha()
                             screen.blit(interact_image,(0,0))
@@ -670,6 +671,7 @@ def game():
                                 enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner2.png")).convert_alpha(),"water")
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
+                            boss.set_alife(False)
                         elif interact == True:
                             interact_image = pygame.image.load(os.path.join(os.path.join("tiles"), "interact_image.png")).convert_alpha()
                             screen.blit(interact_image,(0,0))
@@ -819,6 +821,7 @@ def game():
                                 boss.set_health(200)
                             else:
                                 boss.change_position((-320,-64))
+                                boss.set_alife(False)
                         elif interact == True:
                             interact_image = pygame.image.load(os.path.join(os.path.join("tiles"), "interact_image.png")).convert_alpha()
                             screen.blit(interact_image,(0,0))
@@ -963,6 +966,7 @@ def game():
                                 enemy1 = enemy("gegner", 10, 20, 0, 0, (256, 256),pygame.image.load(os.path.join(os.path.join("tiles"), "gegner2.png")).convert_alpha(),"water")
                             player1.change_position((32,32))
                             enemy1.change_position((320,256))
+                            boss.set_alife(False)
                             if level == 3 or level == 6 or level ==9:
                                 boss.change_position((320,256))
                                 boss.set_health(200)
@@ -1146,6 +1150,7 @@ def game():
                 player1.change_position((32,32))
                 enemy1.change_position((320,256))
                 boss.change_position((-320,-320))
+                boss.set_alife(False)
             else:
                 menu()
         if player1.get_position() == boss.get_position() or player1.get_position() == (boss.get_position()[0]+32,boss.get_position()[1]) or player1.get_position() == (boss.get_position()[0],boss.get_position()[1]+32) or player1.get_position() == (boss.get_position()[0]+32,boss.get_position()[1]+32):
