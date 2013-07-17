@@ -67,9 +67,12 @@ while not done:
                 done = True
             if event.key == pygame.K_m:
                 map_editor()
+            if event.key == pygame.K_c:
+                chat_client()
             if event.key == pygame.K_ESCAPE:
                 sys.exit()
     pygame.display.flip()
+    
 def check_for_collision(player_pos,map):
     solid_list = map.list_solid_tiles()
     if player_pos in solid_list:
@@ -924,6 +927,8 @@ def game():
                                     boss.set_alife(True)
                                 else:
                                     boss.change_position((-320,-64))
+                     
+                                    
                         elif cash == True:
                             player1.set_money(player1.get_money()+100)
                             player1.change_position((player_pos[0]+32,player_pos[1]))
@@ -1074,7 +1079,10 @@ def game():
                         
                         spell_pic = player1.launch_spell("RIGHT",spell_type)
                         spell1 = spell(player1.get_position(),"RIGHT",10,spell_pic,spell_type)
-                        spell_var1 = True    
+                        spell_var1 = True  
+
+                    
+                        
         schritt = schritt + 1
         if schritt == 5:
             spell2 = spell(boss.get_position(),"RIGHT",20,pygame.image.load(os.path.join(os.path.join("tiles"), "32x32r.png")).convert_alpha(),"fire")
