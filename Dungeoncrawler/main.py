@@ -12,6 +12,7 @@ from spell import*
 parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,parentdir) 
 from Mastermind import *
+from map_editor import*
 
 global leben
 global spell_var1
@@ -64,6 +65,8 @@ while not done:
         if event.type == pygame.KEYDOWN:
             if (event.key == pygame.K_RETURN):
                 done = True
+            if event.key == pygame.K_m:
+                map_editor()
             if event.key == pygame.K_ESCAPE:
                 sys.exit()
     pygame.display.flip()
@@ -187,6 +190,8 @@ def menu():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     done = True
+                if event.key == pygame.K_m:
+                    map_editor()
                 if event.key == pygame.K_ESCAPE:
                     sys.exit()
     if done == True:

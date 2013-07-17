@@ -19,3 +19,10 @@ Das Hauptspiel:
 
 Der Karteneditor:
 1. Mit Esc beenden Sie das Programm
+2. mit den Pfeiltasten seuern Sie den Curser
+3. Mit der Eingabetaste ändern Sie die Textur:
+Das Feld ändert sich von dem jeweiligem Standpunkt aus in der Nachfolgenden Liste nach rechts.
+
+floor,wall,warp,finish,trap,back,sword,interact,shopping,managain,healthgain,cashgain,quest,interact2
+
+Falls Sie die alten Level wiederhaben wollen, können sie die Dateien aus dem Ordner backup holen
