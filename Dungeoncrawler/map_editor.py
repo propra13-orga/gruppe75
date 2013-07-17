@@ -2,7 +2,6 @@ import pygame
 import graphics
 import room
 import tile
-from main import menu
 import os
 import sys
 
