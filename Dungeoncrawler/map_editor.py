@@ -1,3 +1,6 @@
+''' Dies ist der map  Editor.
+ 
+'''
 import pygame
 import graphics
 import room
@@ -20,7 +23,7 @@ def map_editor():
     name_sign_dict = {"floor":" ","wall": "#","warp":"+","finish":"-","trap":"T","back":"B","sword":"S","interact":"I","shopping":"G","managain":"M","healthgain":"H","cashgain":"C","quest":"Q","interact2":"L"} 
     name_list = ["floor","wall","warp","finish","trap","back","sword","interact","shopping","managain","healthgain","cashgain","quest","interact2"]
     while running:
-        # run game with 30 frames
+        # run game with 10 frames
         clock.tick(10)
         # screen surface black
         screen.fill((0, 0, 0))

@@ -1,3 +1,4 @@
+'''  Die Aniumations-Klasse '''
 import pygame
 import os
  

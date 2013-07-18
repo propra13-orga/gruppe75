@@ -1,3 +1,4 @@
+''' Die Tile-Klasse und die Tile Definition zumm einlesen der level-txt'''
 import os
 import pygame
 

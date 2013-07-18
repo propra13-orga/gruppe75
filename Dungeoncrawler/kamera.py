@@ -1,3 +1,4 @@
+''' Die Kamera-Klasse'''
 class Kamera(object):
     
     game = None

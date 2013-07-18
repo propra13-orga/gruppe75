@@ -1,3 +1,4 @@
+''' Die Room-klasse und die ladfunktion fue level'''
 import tile
 import graphics
 

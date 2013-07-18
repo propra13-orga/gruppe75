@@ -1,3 +1,4 @@
+''' die Player- Klasse'''
 import pygame
 import graphics
 import os

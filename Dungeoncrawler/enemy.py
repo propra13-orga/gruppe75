@@ -1,3 +1,4 @@
+''' Die Gegner-Klasse. '''
 import pygame
 import os
 

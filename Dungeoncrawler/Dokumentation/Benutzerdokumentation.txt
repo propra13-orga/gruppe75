@@ -8,6 +8,7 @@ Aktionen Entscheiden:
 1. Mit der Eingabetaste starten Sie das Hauptspiel
 2. Mit der Taste m starten Sie den Karteneditor
 3. Mit Esc Taste Beenden Sie das Programm
+4. mit der Taste c öffnen Sie den Chat
 
 Das Hauptspiel:
 1. Die Bewegung des Spielers erfolgt mit den Pfeiltasten

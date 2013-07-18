@@ -1,3 +1,4 @@
+'''Graphikvariablen'''
 # graphics 
 screen_w = 640
 screen_h = 480

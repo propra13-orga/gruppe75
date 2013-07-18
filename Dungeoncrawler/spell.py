@@ -1,3 +1,4 @@
+''' Hier ist die Klasse fue die Zauber.'''
 import pygame
 import os
 from player import*
