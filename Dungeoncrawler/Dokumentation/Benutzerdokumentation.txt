@@ -27,3 +27,5 @@ Das Feld ändert sich von dem jeweiligem Standpunkt aus in der Nachfolgenden List
 floor,wall,warp,finish,trap,back,sword,interact,shopping,managain,healthgain,cashgain,quest,interact2
 
 Falls Sie die alten Level wiederhaben wollen, können sie die Dateien aus dem Ordner backup holen
+4. Mit der Taste a schalten Sie ein Level hoch
+5. Mit der y-Taste(deutsche Tastatur) schalten Sie ein Level zurück

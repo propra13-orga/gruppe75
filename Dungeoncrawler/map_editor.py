@@ -32,7 +32,7 @@ def map_editor():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     sys.exit()
-                elif event.key == pygame.K_a:
+                elif event.key == pygame.K_a:#Levelauswahl
                     if level < 9:
                         level = level + 1
                     else:
@@ -42,7 +42,7 @@ def map_editor():
                         level = level - 1
                     else:
                         pass
-                elif event.key == pygame.K_UP:
+                elif event.key == pygame.K_UP:#cursersteuerung
                     if curser_position[1]-32 < 0:
                         pass
                     elif curser_position[1]-32 > 448:
@@ -73,7 +73,7 @@ def map_editor():
                         pass
                     else:
                         curser_position = (curser_position[0]+32, curser_position[1])
-                elif event.key == pygame.K_RETURN:
+                elif event.key == pygame.K_RETURN:#Aenderung des Spielfelds
                     dict = map.get_coordinates_and_tiles()
                     block = dict[curser_position]
                     name = block.get_name()
